@@ -10,16 +10,38 @@ var selectedId = 1000;
     important (likely admission on, unless we want to cut some off)
 ****************************************************************************/
 
-d3.csv("data/colleges.csv", function(csv) {
-    for (var i=0; i<csv.length; ++i) {
-        csv[i].Type = csv[i].Control;
-		// csv[i].Admission = Number(csv[i].Admission);
-		// csv[i].ACT = Number(csv[i].ACTMedian);
-        //THE ABOVE AREN'T WORKING FOR SOME REASON
-		// csv[i].SATV = Number(csv[i].SATV);
-		// csv[i].ACT = Number(csv[i].ACT);
-    }
-    console.log(csv);
+d3.csv("data/colleges.csv", function(data) {
+    data.forEach(function(d) {
+        d.admission = Number(d['Admission Rate']);
+
+        d.act = Number(d['ACT Median']);
+        d.sat = Number(d['SAT Average']);
+
+        d.undergrads = Number(d['Undergrad Population']);
+        d.partTime = Number(d['% Part-time Undergrads']);
+        d.fullTime = Number(1.0 - Number(d['% Part-time Undergrads']));
+
+        d.white = Number(d['% White']);
+        d.black = Number(d['% Black']);
+        d.hispanic = Number(d['% Hispanic']);
+        d.asian = Number(d['% Asian']);
+        d.amerIndian = Number(d['% American Indian']);
+        d.pacificIslander = Number(d['% Pacific Islander']);
+        d.biracial = Number(d['% Biracial']);
+
+        d.aliens = Number(d['% Nonresident Aliens']);
+
+        d.avgCost = Number(d['Average Cost']);
+        d.studentExpenditure = Number(d['Expenditure Per Student']);
+
+        d.avgFacultySalary = Number(d['Average Faculty Salary']);
+        d.fullTimeFaculty = Number(d['% Full-time Faculty']);
+        d.partTimeFaculty = Number(1.0 - Number(d['% Full-time Faculty']));
+
+        d.undergradsWithPell = Number(d['% Undergrads with Pell Grant']);
+        d.undergradsNoPell = Number(1.0 - Number(d['% Undergrads with Pell Grant']));
+    })
+    console.log(data);
  //    var satmExtent = d3.extent(csv, function(row) { return row.SATM; });
  //    var satvExtent = d3.extent(csv, function(row) { return row.SATV; });
  //    var actExtent = d3.extent(csv,  function(row) { return row.ACT;  });
