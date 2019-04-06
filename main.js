@@ -20,6 +20,14 @@ d3.csv("data/colleges.csv", function(data) {
         d.undergrads = Number(d['Undergrad Population']);
         d.partTime = Number(d['% Part-time Undergrads']);
         d.fullTime = Number(1.0 - Number(d['% Part-time Undergrads']));
+        d.over25 = Number(d['% Undergrads 25+ y.o.']);
+        d.under25 = Number(1.0 - Number(d['% Undergrads 25+ y.o.']));
+
+        d.avgAge = Number(d['Average Age of Entry']);
+
+        d.avgFamilyIncome = Number(d['Average Family Income']);
+        d.medFamilyIncome = Number(d['Median Family Income']);
+        d.poverty = Number(d['Povery Rate']);
 
         d.white = Number(d['% White']);
         d.black = Number(d['% Black']);
@@ -33,6 +41,9 @@ d3.csv("data/colleges.csv", function(data) {
 
         d.avgCost = Number(d['Average Cost']);
         d.studentExpenditure = Number(d['Expenditure Per Student']);
+        d.medianDebt = Number(d['Median Debt']);
+        d.medianDebtGrad = Number(d['Median Debt on Graduation']);
+        d.medianDebtWithdraw = Number(d['Median Debt on Withdrawal']);
 
         d.avgFacultySalary = Number(d['Average Faculty Salary']);
         d.fullTimeFaculty = Number(d['% Full-time Faculty']);
@@ -40,6 +51,22 @@ d3.csv("data/colleges.csv", function(data) {
 
         d.undergradsWithPell = Number(d['% Undergrads with Pell Grant']);
         d.undergradsNoPell = Number(1.0 - Number(d['% Undergrads with Pell Grant']));
+
+        d.completion150 = Number(d['Completion Rate 150% time']);
+        d.threeYearDefault = Number(d['3 Year Default Rate']);
+
+        d.retention = Number(d['Retention Rate (First Time Students)']);
+
+        d.fedLoans = Number(d['% Federal Loans']);
+        d.pellGrant = Number(d['% Pell Grant Recipients']);
+
+        d.unemployedAfter8 = Number(d['Number of Unemployed 8 years after entry']);
+        d.employedAfter8 = Number(d['Number of Employed 8 years after entry']);
+
+        d.meanEarningsAfter8 = Number(d['Mean Earnings 8 years After Entry']);
+        d.medEarningsAfter8 = Number(d['Median Earnings 8 years After Entry']);
+
+        d.highestDegree = Number(d['Highest Degree']);
     })
     console.log(data);
  //    var satmExtent = d3.extent(csv, function(row) { return row.SATM; });
