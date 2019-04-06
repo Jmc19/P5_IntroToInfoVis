@@ -27,7 +27,7 @@ d3.csv("data/colleges.csv", function(data) {
 
         d.avgFamilyIncome = Number(d['Average Family Income']);
         d.medFamilyIncome = Number(d['Median Family Income']);
-        d.poverty = Number(d['Povery Rate']);
+        d.poverty = Number(d['Poverty Rate']/100.0);
 
         d.white = Number(d['% White']);
         d.black = Number(d['% Black']);
