@@ -187,6 +187,8 @@ d3.csv("data/colleges.csv", function(data) {
     We'll need if/elses here as well unless there is a much easier way
     I am missing. However, once again, shouldn't be awful, just a whole
     bunch of grunt work.
+
+                        WILL ALSO NEED BRUSHING
 *****************************************************************************/
 
 	 //add scatterplot points
