@@ -1,7 +1,12 @@
-var width =500;
+var width = 500;
 var height = 500;
 
 var selectedId = 10000;
+// PERHAPS ONLY ONE AXIS MANIPULATED, TWO WILL BE VERY DIFFICULT
+// var selectedValueX1;
+// var selectedValueX2;
+var selectedValueY1;
+var selectedValueY2;
 
 /***************************************************************************
                             DATA SETUP
@@ -12,6 +17,8 @@ var selectedId = 10000;
 
 d3.csv("data/colleges.csv", function(data) {
     data.forEach(function(d) {
+        d.pubPrivate = d['Control'];
+
         d.admission = Number(d['Admission Rate']);
 
         d.act = Number(d['ACT Median']);
