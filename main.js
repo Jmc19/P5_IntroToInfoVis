@@ -117,6 +117,7 @@ d3.csv("data/colleges.csv", function(data) {
 /****************************************************************************
                                 DROPDOWN STUFF
 
+                    ON CHANGE AS WELL - MOST IMPORTANT FUNCTION
 ****************************************************************************/
     var yOptions = ["Admission Rate", "Number of Undergraduates", "Percentage of Undergraduates Over 25", "Percentage of Undergraduates Under 25", "Average Age of Entry", "Average Family Income", "Median Family Income", "Poverty Rate", "Percent White", "Percent Black", "Percent Hispanic", "Percent Asian", "Percent American Indian", "Percent Pacific Islander", "Percent Biracial", "Percent Aliens", "Average Cost", "Student Expenditures", "Percent Undergraduates with Pell Grant", "Percent Undergraduates without Pell Grant", "Percentage of Undergraduates with a Federal Loan", "Number of Undergraduates Unemployed After 8 Years", "Number of Undergraduates Employed After 8 Years"];
     var dd = d3.select(wrapper) //?
@@ -218,8 +219,6 @@ d3.csv("data/colleges.csv", function(data) {
 /****************************************************************************
                                 AXES SETUP
 
-    We will need a whole bunch of if/else based on what is selected, but
-    this shouldn't be too bad, just grunt work
 *****************************************************************************/
     // // Axis setup
     var xScale = d3.scaleLinear().domain(medianDebtExtent).range([50, 470]);
