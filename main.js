@@ -1,7 +1,7 @@
 var width =500;
-var height= 500;
+var height = 500;
 
-var selectedId = 1000;
+var selectedId = 10000;
 
 /***************************************************************************
                             DATA SETUP
@@ -69,15 +69,52 @@ d3.csv("data/colleges.csv", function(data) {
         d.highestDegree = Number(d['Highest Degree']);
     })
     console.log(data);
- //    var satmExtent = d3.extent(csv, function(row) { return row.SATM; });
- //    var satvExtent = d3.extent(csv, function(row) { return row.SATV; });
- //    var actExtent = d3.extent(csv,  function(row) { return row.ACT;  });
- //    var gpaExtent = d3.extent(csv,  function(row) {return row.GPA;   });
 
 
- //    var satExtents = {
+    var admissionExtent = d3.extent(data, function(row) { return row.admission; });
+    var actExtent = d3.extent(data, function(row) { return row.act; });
+    var satExtent = d3.extent(data,  function(row) { return row.sat;  });
+    var undergradsExtent = d3.extent(data,  function(row) {return row.undergrads;   });
+    var partTimeExtent = d3.extent(data, function(row) { return row.partTime; });
+    var fullTimeExtent = d3.extent(data, function(row) { return row.fullTime; });
+    var over25Extent = d3.extent(data, function(row) { return row.over25; });
+    var under25Extent = d3.extent(data, function(row) { return row.under25; });
+    var avgAgeExtent = d3.extent(data, function(row) { return row.avgAge; });
+    var avgFamilyIncomeExtent = d3.extent(data, function(row) { return row.avgFamilyIncome; });
+    var medFamilyIncomeExtent = d3.extent(data, function(row) { return row.medFamilyIncome; });
+    var povertyExtent = d3.extent(data, function(row) { return row.poverty; });
+    var whiteExtent = d3.extent(data, function(row) { return row.white; });
+    var blackExtent = d3.extent(data, function(row) { return row.black; });
+    var hispanicExtent = d3.extent(data, function(row) { return row.hispanic; });
+    var asianExtent = d3.extent(data, function(row) { return row.asian; });
+    var amerIndianExtent = d3.extent(data, function(row) { return row.amerIndian; });
+    var pacificIslanderExtent = d3.extent(data, function(row) { return row.pacificIslander; });
+    var biracialExtent = d3.extent(data, function(row) { return row.biracial; });
+    var aliensExtent = d3.extent(data, function(row) { return row.aliens; });
+    var avgCostExtent = d3.extent(data, function(row) { return row.avgCost; });
+    var studentExpenditureExtent = d3.extent(data, function(row) { return row.studentExpenditure; });
+    var medianDebtExtent = d3.extent(data, function(row) { return row.medianDebt; });
+    var medianDebtGradExtent = d3.extent(data, function(row) { return row.medianDebtGrad; });
+    var medianDebtWithdrawExtent = d3.extent(data, function(row) { return row.medianDebtWithdraw; });
+    var avgFacultySalaryExtent = d3.extent(data, function(row) { return row.avgFacultySalary; });
+    var fullTimeFacultyExtent = d3.extent(data, function(row) { return row.fullTimeFaculty; });
+    var partTimeFacultyExtent = d3.extent(data, function(row) { return row.partTimeFaculty; });
+    var undergradsWithPellExtent = d3.extent(data, function(row) { return row.undergradsWithPell; });
+    var undergradsNoPellExtent = d3.extent(data, function(row) { return row.undergradsNoPell; });
+    var completion150Extent = d3.extent(data, function(row) { return row.completion150; });
+    var threeYearDefaultExtent = d3.extent(data, function(row) { return row.threeYearDefault; });
+    var retentionExtent = d3.extent(data, function(row) { return row.retention; });
+    var fedLoansExtent = d3.extent(data, function(row) { return row.fedLoans; });
+    var pellGrantExtent = d3.extent(data, function(row) { return row.pellGrant; });
+    var unemployedAfter8Extent = d3.extent(data, function(row) { return row.unemployedAfter8; });
+    var employedAfter8Extent = d3.extent(data, function(row) { return row.employedAfter8; });
+    var meanEarningsAfter8Extent = d3.extent(data, function(row) { return row.meanEarningsAfter8; });
+    var medEarningsAfter8Extent = d3.extent(data, function(row) { return row.medEarningsAfter8; });
+    var highestDegreeExtent = d3.extent(data, function(row) { return row.highestDegree; });
+
+    // var satExtents = {
 	// "SATM": satmExtent,
-	// "SATV": satvExtent
+	// "SATV": satvExtent }
 
     });
 
@@ -133,6 +170,9 @@ d3.csv("data/colleges.csv", function(data) {
 	//    .attr("cy", function(d) { return yScale(d.SATV); })
 	//    .attr("r", 5)
 	//    .on("click", function(d,i){
+/*****************************************************************************
+            HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
+*****************************************************************************/
  //            var SATMTable = document.getElementById("satm");
  //            SATMTable.innerHTML = "";
  //            SATMTable.append("" + d.SATM);
@@ -170,6 +210,9 @@ d3.csv("data/colleges.csv", function(data) {
 	//    .attr("cy", function(d) { return yScale2(d.GPA); })
 	//    .attr("r", 5)
 	//    .on("click", function(d,i) {
+/*****************************************************************************
+            HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
+*****************************************************************************/
  //            var SATMTable = document.getElementById("satm");
  //            SATMTable.innerHTML = "";
  //            SATMTable.append("" + d.SATM);
