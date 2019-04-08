@@ -2,11 +2,8 @@ var width = 500;
 var height = 500;
 
 var selectedId = 10000;
-// PERHAPS ONLY ONE AXIS MANIPULATED, TWO WILL BE VERY DIFFICULT
-// var selectedValueX1;
-// var selectedValueX2;
-var selectedValueY1;
-var selectedValueY2;
+
+var selectedValueY;
 
 /***************************************************************************
                             DATA SETUP
@@ -124,7 +121,33 @@ d3.csv("data/colleges.csv", function(data) {
 	// "SATV": satvExtent }
 
     });
+/****************************************************************************
+                        DROPDOWN STUFF - WILL NEED TO EDIT
 
+****************************************************************************/
+// var yOptions = [];
+// var dd = d3.select(wrapper) //?
+//         .append('p')
+//         .append('select')
+//         .attr('class', 'select')
+//         .on('change', onchange)
+//         .selectAll('option')
+//         .data(yOptions).enter()
+//         .append('option')
+//         .text(function (d) { return d; });
+
+//     function onchange() {
+    // change x scale and redo points here?
+//         selectedValueY = d3.select('select').property('value');
+
+//         if (selectValue === 'steelblue') {
+//             bars.selectAll('rect')
+//                 .style('fill', function(d) { return 'steelblue'; });
+//         } else {
+//             bars.selectAll('rect')
+//                 .style('fill', function(d) { return selectValue; });
+//         }
+//     }
 
 /****************************************************************************
                                 AXES SETUP
@@ -133,10 +156,11 @@ d3.csv("data/colleges.csv", function(data) {
     this shouldn't be too bad, just grunt work
 *****************************************************************************/
     // // Axis setup
-    // var xScale = d3.scaleLinear().domain(satmExtent).range([50, 470]);
+    // var xScale = d3.scaleLinear().domain(medianDebtExtent).range([50, 470]);
     // var yScale = d3.scaleLinear().domain(satvExtent).range([470, 30]);
+    //NEED TO HAVE ySCALE STUFF CHANGE WITH DD
 
-    // var xScale2 = d3.scaleLinear().domain(actExtent).range([50, 470]);
+    // var xScale2 = d3.scaleLinear().domain(medEarningsAfter8Extent).range([50, 470]);
     // var yScale2 = d3.scaleLinear().domain(gpaExtent).range([470, 30]);
 
     // var xAxis = d3.axisBottom().scale(xScale);
