@@ -132,8 +132,37 @@ d3.csv("data/colleges.csv", function(data) {
     function onchange() {
         selectedValueY = d3.select('select').property('value');
 
+        if (selectedValueY === "Admission Rate") {
+            yScale.domain(admissionExtent);
+            yScale2.domain(admissionExtent);
+        } else if (selectedValueY === "Number of Undergraduates") {
+            yScale.domain(undergradsExtent);
+            yScale2.domain(undergradsExtent);
+        } else if (selectedValueY === "Percentage of Undergraduates Over 25") {
+            yScale.domain(over25Extent);
+            yScale2.domain(over25Extent);
+        } else if (selectedValueY === "Percentage of Undergraduates Under 25") {
+            yScale.domain(under25Extent);
+            yScale2.domain(under25Extent);
+        } else if (selectedValueY === "Average Age of Entry") {
+            yScale.domain(avgAgeExtent);
+            yScale2.domain(avgAgeExtent);
+        } else if (selectedValueY === "Average Family Income") {
+            yScale.domain(avgFamilyIncomeExtent);
+            yScale2.domain(avgFamilyIncomeExtent);
+        } else if (selectedValueY === "Median Family Income") {
+            yScale.domain(medFamilyIncomeExtent);
+            yScale2.domain(medFamilyIncomeExtent);
+        }
+
+        yAxis = d3.axisLeft().scale(yScale);
+        yAxis2 = d3.axisLeft().scale(yScale2);
+
         yText1.text(selectedValueY);
         yText2.text(selectedValueY);
+
+        y1.call(yAxis);
+        y2.call(yAxis2);
     }
 
 /****************************************************************************
@@ -270,11 +299,12 @@ d3.csv("data/colleges.csv", function(data) {
         .style("fill", "black")
 		.text("Median Debt");
 
-    var yText1 = chart1 // or something else that selects the SVG element in your visualizations
+    var y1 = chart1 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
 		.attr("transform", "translate(50, 0)")
 		.call(yAxis)
-		.append("text")
+
+    var yText1 = y1.append("text")
 		.attr("class", "text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", 6)
@@ -295,11 +325,14 @@ d3.csv("data/colleges.csv", function(data) {
         .style("fill", "black")
 		.text("Median Earnings After 8 Years");
 
-    var yText2 = chart2 // or something else that selects the SVG element in your visualizations
+    var y2 = chart2 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
 		.attr("transform", "translate(50, 0)")
 		.call(yAxis2)
-		.append("text")
+
+
+
+    var yText2 = y2.append("text")
 		.attr("class", "text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", 6)
