@@ -131,6 +131,9 @@ d3.csv("data/colleges.csv", function(data) {
 
     function onchange() {
         selectedValueY = d3.select('select').property('value');
+
+        yText1.text(selectedValueY);
+        yText2.text(selectedValueY);
     }
 
 /****************************************************************************
@@ -260,19 +263,19 @@ d3.csv("data/colleges.csv", function(data) {
 		.attr("transform", "translate(0,"+ (width -30)+ ")")
 		.call(xAxis) // call the axis generator
 		.append("text")
-		.attr("class", "label")
+		.attr("class", "text")
 		.attr("x", width-16)
 		.attr("y", -6)
 		.style("text-anchor", "end")
         .style("fill", "black")
 		.text("Median Debt");
 
-    chart1 // or something else that selects the SVG element in your visualizations
+    var yText1 = chart1 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
 		.attr("transform", "translate(50, 0)")
 		.call(yAxis)
 		.append("text")
-		.attr("class", "label")
+		.attr("class", "text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", 6)
 		.attr("dy", ".71em")
@@ -285,19 +288,19 @@ d3.csv("data/colleges.csv", function(data) {
 		.attr("transform", "translate(0,"+ (width -30)+ ")")
 		.call(xAxis2)
 		.append("text")
-		.attr("class", "label")
+		.attr("class", "text")
 		.attr("x", width-16)
 		.attr("y", -6)
 		.style("text-anchor", "end")
         .style("fill", "black")
 		.text("Median Earnings After 8 Years");
 
-    chart2 // or something else that selects the SVG element in your visualizations
+    var yText2 = chart2 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
 		.attr("transform", "translate(50, 0)")
 		.call(yAxis2)
 		.append("text")
-		.attr("class", "label")
+		.attr("class", "text")
 		.attr("transform", "rotate(-90)")
 		.attr("y", 6)
 		.attr("dy", ".71em")
