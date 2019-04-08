@@ -31,7 +31,7 @@ d3.csv("data/colleges.csv", function(data) {
 
         d.avgFamilyIncome = Number(d['Average Family Income']);
         d.medFamilyIncome = Number(d['Median Family Income']);
-        d.poverty = Number(d['Poverty Rate']/100.0);
+        d.poverty = Number(d['Poverty Rate'])/100.0;
 
         d.white = Number(d['% White']);
         d.black = Number(d['% Black']);
@@ -118,7 +118,7 @@ d3.csv("data/colleges.csv", function(data) {
                                 DROPDOWN STUFF
 
 ****************************************************************************/
-    var yOptions = ["Admission Rate", "Number of Undergraduates", "Percentage of Undergraduates Over 25", "Percentage of Undergraduates Under 25", "Average Age of Entry", "Average Family Income", "Median Family Income", "Poverty Rate", "Percent White", "Percent Black", "Percent Hispanic", "Percent Asian", "Percent American Indian", "Percent Pacific Islander", "Percent Biracial", "Percent Aliens", "Average Cost", "Student Expenditures", "Percent Undergraduates with Pell Grant", "Percent Undergraduates without Pell Grant", "Percentage of Undergraduates with a Federal Loan", "Percentage of Undergraduates Unemployed After 8 Years", "Percentage of Undergraduates Employed After 8 Years"];
+    var yOptions = ["Admission Rate", "Number of Undergraduates", "Percentage of Undergraduates Over 25", "Percentage of Undergraduates Under 25", "Average Age of Entry", "Average Family Income", "Median Family Income", "Poverty Rate", "Percent White", "Percent Black", "Percent Hispanic", "Percent Asian", "Percent American Indian", "Percent Pacific Islander", "Percent Biracial", "Percent Aliens", "Average Cost", "Student Expenditures", "Percent Undergraduates with Pell Grant", "Percent Undergraduates without Pell Grant", "Percentage of Undergraduates with a Federal Loan", "Number of Undergraduates Unemployed After 8 Years", "Number of Undergraduates Employed After 8 Years"];
     var dd = d3.select(wrapper) //?
             .append('p')
             .append('select')
@@ -153,6 +153,56 @@ d3.csv("data/colleges.csv", function(data) {
         } else if (selectedValueY === "Median Family Income") {
             yScale.domain(medFamilyIncomeExtent);
             yScale2.domain(medFamilyIncomeExtent);
+        } else if (selectedValueY === "Poverty Rate") {
+            yScale.domain(povertyExtent);
+            yScale2.domain(povertyExtent);
+        } else if (selectedValueY === "Percent White") {
+            yScale.domain(whiteExtent);
+            yScale2.domain(whiteExtent);
+        } else if (selectedValueY === "Percent Black") {
+            yScale.domain(blackExtent);
+            yScale2.domain(blackExtent);
+        } else if (selectedValueY === "Percent Hispanic") {
+            yScale.domain(hispanicExtent);
+            yScale2.domain(hispanicExtent);
+        } else if (selectedValueY === "Percent Asian") {
+            yScale.domain(asianExtent);
+            yScale2.domain(asianExtent);
+        } else if (selectedValueY === "Percent American Indian") {
+            yScale.domain(amerIndianExtent);
+            yScale2.domain(amerIndianExtent);
+        } else if (selectedValueY === "Percent Pacific Islander") {
+            yScale.domain(pacificIslanderExtent);
+            yScale2.domain(pacificIslanderExtent);
+        } else if (selectedValueY === "Percent Biracial") {
+            yScale.domain(biracialExtent);
+            yScale2.domain(biracialExtent);
+        } else if (selectedValueY === "Percent Aliens") {
+            yScale.domain(aliensExtent);
+            yScale2.domain(aliensExtent);
+        } else if (selectedValueY === "Average Cost") {
+            yScale.domain(avgCostExtent);
+            yScale2.domain(avgCostExtent);
+        } else if (selectedValueY === "Student Expenditures") {
+            yScale.domain(studentExpenditureExtent);
+            yScale2.domain(studentExpenditureExtent);
+        } else if (selectedValueY === "Percent Undergraduates with Pell Grant") {
+            yScale.domain(undergradsWithPellExtent);
+            yScale2.domain(undergradsWithPellExtent);
+        } else if (selectedValueY === "Percent Undergraduates without Pell Grant") {
+            yScale.domain(undergradsNoPellExtent);
+            yScale2.domain(undergradsNoPellExtent);
+        } else if (selectedValueY === "Percentage of Undergraduates with a Federal Loan") {
+            yScale.domain(fedLoansExtent);
+            yScale2.domain(fedLoansExtent);
+        } else if (selectedValueY === "Number of Undergraduates Unemployed After 8 Years") {
+            yScale.domain(unemployedAfter8Extent);
+            yScale2.domain(unemployedAfter8Extent);
+        } else if (selectedValueY === "Number of Undergraduates Employed After 8 Years") {
+            yScale.domain(employedAfter8Extent);
+            yScale2.domain(employedAfter8Extent);
+        } else {
+            console.log("Unexpected Event")
         }
 
         yAxis = d3.axisLeft().scale(yScale);
@@ -329,8 +379,6 @@ d3.csv("data/colleges.csv", function(data) {
 		.append("g") // create a group node
 		.attr("transform", "translate(50, 0)")
 		.call(yAxis2)
-
-
 
     var yText2 = y2.append("text")
 		.attr("class", "text")
