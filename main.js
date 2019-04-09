@@ -286,9 +286,10 @@ d3.csv("data/colleges.csv", function(data) {
     var yScaleBar1 = d3.scaleLinear().domain([0, height]).range([470,30]);
 
     //This should be the scales for the static bar chart
-    var xScaleBar2 = d3.scaleLinear().domain([0, width]).range([50, 470]);
+    var xScaleBar2 = d3.scaleBand().domain(yOptions).range([50, 470]);
     var yScaleBar2 = d3.scaleLinear().domain([0, height]).range([470, 30]);
 
+    //Assigns the Scales to an Axis
     var xAxisBar1 = d3.axisBottom().scale(xScaleBar1);
     var yAxisBar1 = d3.axisLeft().scale(yScaleBar1);
 
@@ -485,7 +486,7 @@ d3.csv("data/colleges.csv", function(data) {
     //Static Bar Chart (Bottom Right most one)
     chart4.append("g")
           .attr("transform", "translate(0,"+ (width -30)+ ")")
-          .call(xAxisBar2) // call the axis generator
+          .call(xAxisBar2)
           .attr("x", width-16)
           .attr("y", -6);
     chart4.append("g")
@@ -499,7 +500,18 @@ d3.csv("data/colleges.csv", function(data) {
 
     We'll need to do the bar chart info ourselves, unfortunately.
 **************************************************************************/
+    // var barsChart3 = chart3.append("g");
+    // var barsChart4 = chart4.append("g");
 
+    // chart4.append("g")
+    //       .data(data)
+    //       .enter()
+    //       .append("rect")
+    //       .attr("x", function(d) {
+    //          //return
+    //       })
+    //       .attr("y", 30)
+    //       .attr("width", 10)
+    //       .attr("height", 500);
 
-
-    });
+});
