@@ -233,17 +233,49 @@ d3.csv("data/colleges.csv", function(data) {
     var xAxis2 = d3.axisBottom().scale(xScale2);
     var yAxis2 = d3.axisLeft().scale(yScale2);
 
+    // Axis setup for Bar Chart
+    //TODO: Look at domain and change accordingly, default domain is set
+    //to the width and height respecitvely; this should be dynamic
+    var xScaleBar1 = d3.scaleLinear().domain([0, width]).range([50, 470]);
+    var yScaleBar1 = d3.scaleLinear().domain([0, height]).range([470,30]);
+
+    //This should be the scales for the static bar chart
+    var xScaleBar2 = d3.scaleLinear().domain([0, width]).range([50, 470]);
+    var yScaleBar2 = d3.scaleLinear().domain([0, height]).range([470, 30]);
+
+    var xAxisBar1 = d3.axisBottom().scale(xScaleBar1);
+    var yAxisBar1 = d3.axisLeft().scale(yScaleBar1);
+
+    var xAxisBar2 = d3.axisBottom().scale(xScaleBar2);
+    var yAxisBar2 = d3.axisBottom().scale(yScaleBar2);
+
+
     //Create SVGs for charts
     var chart1 = d3.select("#chart1")
 	                .append("svg:svg")
 	                .attr("width",width)
 	                .attr("height",height);
 
-
     var chart2 = d3.select("#chart2")
 	                .append("svg:svg")
 	                .attr("width",width)
 	                .attr("height",height);
+
+
+    //TODO: Need to reposition the SVG elements to be below chart 1 and chart 2
+    var chart3 = d3.select("#chart3")
+                   .append("svg:svg")
+                   .attr("width", width)
+                   .attr("height", height)
+                   .style("border", "black")
+                   .style("border-style", "solid");
+
+    var chart4 = d3.select("#chart4")
+                   .append("svg:svg")
+                   .attr("width", width)
+                   .attr("height", height)
+                   .style("border", "black")
+                   .style("border-style", "solid");
 
 /*****************************************************************************
                             POINTS SETUP
@@ -388,12 +420,13 @@ d3.csv("data/colleges.csv", function(data) {
         .style("fill", "black")
 		.text(selectedValueY);
 
+
 /**************************************************************************
                             BAR CHART STUFF
 
     We'll need to do the bar chart info ourselves, unfortunately.
 **************************************************************************/
 
-    //Test comment
+
 
     });
