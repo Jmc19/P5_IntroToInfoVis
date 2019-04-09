@@ -287,18 +287,23 @@ d3.csv("data/colleges.csv", function(data) {
                         WILL ALSO NEED BRUSHING?
 *****************************************************************************/
 
-	 //add scatterplot points
- //     var temp1= chart1.selectAll("circle")
-	//    .data(data)
-	//    .enter()
-	//    .append("circle")
-	//    .attr("id",function(d,i) {return "i" + i;} )
-	//    .attr("stroke", "black")
- //       .attr("class", "unselected")
-	//    .attr("cx", function(d) { return xScale(d.medianDebt); })
-	//    .attr("cy", function(d) { return yScale(d.SATV); })
-	//    .attr("r", 5)
-	//    .on("click", function(d,i){
+	 // add scatterplot points
+     var temp1= chart1.selectAll("circle")
+	   .data(data)
+	   .enter()
+	   .append("circle")
+	   .attr("id",function(d,i) {return "i" + i;} )
+	   .attr("stroke", "black")
+	   .attr("cx", function(d) { return xScale(d.medianDebt); })
+	   .attr("cy", function(d) { return yScale(d.admission); })
+	   .attr("r", 2)
+       .classed("public", function(d) {
+            return d.pubPrivate === "Public";
+       })
+       .classed("private", function(d) {
+            return d.pubPrivate === "Private";
+       });
+	   // .on("click", function(d,i){
 /*****************************************************************************
             HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
 *****************************************************************************/
@@ -328,17 +333,22 @@ d3.csv("data/colleges.csv", function(data) {
 
  //       });
 
- //    var temp2= chart2.selectAll("circle")
-	//    .data(data)
-	//    .enter()
-	//    .append("circle")
-	//    .attr("id",function(d,i) {return "c" + i;} )
-	//    .attr("stroke", "black")
- //       .attr("class", "unselected")
-	//    .attr("cx", function(d) { return xScale2(d.medEarningsAfter8); })
-	//    .attr("cy", function(d) { return yScale2(d.GPA); })
-	//    .attr("r", 5)
-	//    .on("click", function(d,i) {
+    var temp2= chart2.selectAll("circle")
+	   .data(data)
+	   .enter()
+	   .append("circle")
+	   .attr("id",function(d,i) {return "c" + i;} )
+	   .attr("stroke", "black")
+	   .attr("cx", function(d) { return xScale2(d.medEarningsAfter8); })
+	   .attr("cy", function(d) { return yScale2(d.admission); })
+	   .attr("r", 2)
+       .classed("public", function(d) {
+            return d.pubPrivate === "Public";
+       })
+       .classed("private", function(d) {
+            return d.pubPrivate === "Private";
+       });
+	   // .on("click", function(d,i) {
 /*****************************************************************************
             HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
 *****************************************************************************/

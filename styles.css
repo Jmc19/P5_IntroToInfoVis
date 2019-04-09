@@ -14,8 +14,8 @@ body {
 }
 /*Added public and private instead of unselected*/
 .public {
-	stroke: black;
-	fill: black;
+	stroke: green;
+	fill: green;
 }
 .private {
 	stroke: blue;
