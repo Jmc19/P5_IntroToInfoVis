@@ -394,4 +394,6 @@ d3.csv("data/colleges.csv", function(data) {
     We'll need to do the bar chart info ourselves, unfortunately.
 **************************************************************************/
 
+    //Test comment
+
     });
