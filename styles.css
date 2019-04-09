@@ -37,13 +37,15 @@ path.domain {
 }
 /*dpn't think that we need this one, but I'll keep it just in case for now*/
 #chart3 {
-	bottom: -375px;
+	/*bottom:-375px;*/
+	top:525px;
 	position:absolute;
 	float:left;
 }
 #chart4 {
-	bottom: -375px;
-	left: 525px;
+	/*bottom:-375px;*/
+	top:525px;
+	left:525px;
 	position:absolute;
 	float:left;
 }
