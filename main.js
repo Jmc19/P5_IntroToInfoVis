@@ -67,8 +67,8 @@ d3.csv("data/colleges.csv", function(data) {
         d.unemployedAfter8 = Number(d['Number of Unemployed 8 years after entry']);
         d.employedAfter8 = Number(d['Number of Employed 8 years after entry']);
 
-        // d.meanEarningsAfter8 = Number(d['Mean Earnings 8 years After Entry']);
-        d.medEarningsAfter8 = Number(d['Median Earnings 8 years After Entry']);
+        d.meanEarningsAfter8 = Number(d['Mean Earnings 8 years After Entry']);
+        // d.medEarningsAfter8 = Number(d['Median Earnings 8 years After Entry']);
 
         // d.highestDegree = Number(d['Highest Degree']);
     })
@@ -110,8 +110,8 @@ d3.csv("data/colleges.csv", function(data) {
     var pellGrantExtent = d3.extent(data, function(row) { return row.pellGrant; });
     var unemployedAfter8Extent = d3.extent(data, function(row) { return row.unemployedAfter8; });
     var employedAfter8Extent = d3.extent(data, function(row) { return row.employedAfter8; });
-    // var meanEarningsAfter8Extent = d3.extent(data, function(row) { return row.meanEarningsAfter8; });
-    var medEarningsAfter8Extent = d3.extent(data, function(row) { return row.medEarningsAfter8; });
+    var meanEarningsAfter8Extent = d3.extent(data, function(row) { return row.meanEarningsAfter8; });
+    // var medEarningsAfter8Extent = d3.extent(data, function(row) { return row.medEarningsAfter8; });
     // var highestDegreeExtent = d3.extent(data, function(row) { return row.highestDegree; });
 
 /****************************************************************************
@@ -136,72 +136,118 @@ d3.csv("data/colleges.csv", function(data) {
         if (selectedValueY === "Admission Rate") {
             yScale.domain(admissionExtent);
             yScale2.domain(admissionExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.admission); });
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.admission); });
         } else if (selectedValueY === "Number of Undergraduates") {
             yScale.domain(undergradsExtent);
             yScale2.domain(undergradsExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.undergrads); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.undergrads); })
         } else if (selectedValueY === "Percentage of Undergraduates Over 25") {
             yScale.domain(over25Extent);
             yScale2.domain(over25Extent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.over25); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.over25); })
         } else if (selectedValueY === "Percentage of Undergraduates Under 25") {
             yScale.domain(under25Extent);
             yScale2.domain(under25Extent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.under25); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.under25); })
         } else if (selectedValueY === "Average Age of Entry") {
             yScale.domain(avgAgeExtent);
             yScale2.domain(avgAgeExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.avgAge); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.avgAge); })
         } else if (selectedValueY === "Average Family Income") {
             yScale.domain(avgFamilyIncomeExtent);
             yScale2.domain(avgFamilyIncomeExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.avgFamilyIncome); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.avgFamilyIncome); })
         } else if (selectedValueY === "Median Family Income") {
             yScale.domain(medFamilyIncomeExtent);
             yScale2.domain(medFamilyIncomeExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.medFamilyIncome); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.medFamilyIncome); })
         } else if (selectedValueY === "Poverty Rate") {
             yScale.domain(povertyExtent);
             yScale2.domain(povertyExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.poverty); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.poverty); })
         } else if (selectedValueY === "Percent White") {
             yScale.domain(whiteExtent);
             yScale2.domain(whiteExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.white); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.white); })
         } else if (selectedValueY === "Percent Black") {
             yScale.domain(blackExtent);
             yScale2.domain(blackExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.black); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.black); })
         } else if (selectedValueY === "Percent Hispanic") {
             yScale.domain(hispanicExtent);
             yScale2.domain(hispanicExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.hispanic); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.hispanic); })
         } else if (selectedValueY === "Percent Asian") {
             yScale.domain(asianExtent);
             yScale2.domain(asianExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.asian); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.asian); })
         } else if (selectedValueY === "Percent American Indian") {
             yScale.domain(amerIndianExtent);
             yScale2.domain(amerIndianExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.amerIndian); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.amerIndian); })
         } else if (selectedValueY === "Percent Pacific Islander") {
             yScale.domain(pacificIslanderExtent);
             yScale2.domain(pacificIslanderExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.pacificIslander); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.pacificIslander); })
         } else if (selectedValueY === "Percent Biracial") {
             yScale.domain(biracialExtent);
             yScale2.domain(biracialExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.biracial); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.biracial); })
         } else if (selectedValueY === "Percent Aliens") {
             yScale.domain(aliensExtent);
             yScale2.domain(aliensExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.aliens); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.aliens); })
         } else if (selectedValueY === "Average Cost") {
             yScale.domain(avgCostExtent);
             yScale2.domain(avgCostExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.avgCost); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.avgCost); })
         } else if (selectedValueY === "Student Expenditures") {
             yScale.domain(studentExpenditureExtent);
             yScale2.domain(studentExpenditureExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.studentExpenditure); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.studentExpenditure); })
         } else if (selectedValueY === "Percent Undergraduates with Pell Grant") {
             yScale.domain(undergradsWithPellExtent);
             yScale2.domain(undergradsWithPellExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.undergradsWithPell); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.undergradsWithPell); })
         } else if (selectedValueY === "Percent Undergraduates without Pell Grant") {
             yScale.domain(undergradsNoPellExtent);
             yScale2.domain(undergradsNoPellExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.undergradsNoPell); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.undergradsNoPell); })
         } else if (selectedValueY === "Percentage of Undergraduates with a Federal Loan") {
             yScale.domain(fedLoansExtent);
             yScale2.domain(fedLoansExtent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.fedLoans); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.fedLoans); })
         } else if (selectedValueY === "Number of Undergraduates Unemployed After 8 Years") {
             yScale.domain(unemployedAfter8Extent);
             yScale2.domain(unemployedAfter8Extent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.unemployedAfter8); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.unemployedAfter8); })
         } else if (selectedValueY === "Number of Undergraduates Employed After 8 Years") {
             yScale.domain(employedAfter8Extent);
             yScale2.domain(employedAfter8Extent);
+            chart1.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale(d.employedAfter8); })
+            chart2.selectAll("circle").transition().duration(1000).attr("cy", function(d) { return yScale2(d.employedAfter8); })
         } else {
             console.log("Unexpected Event")
         }
@@ -212,8 +258,8 @@ d3.csv("data/colleges.csv", function(data) {
         yText1.text(selectedValueY);
         yText2.text(selectedValueY);
 
-        y1.call(yAxis);
-        y2.call(yAxis2);
+        y1.transition().duration(500).call(yAxis);
+        y2.transition().duration(500).call(yAxis2);
     }
 
 /****************************************************************************
@@ -224,7 +270,7 @@ d3.csv("data/colleges.csv", function(data) {
     var xScale = d3.scaleLinear().domain(medianDebtExtent).range([50, 470]);
     var yScale = d3.scaleLinear().domain(admissionExtent).range([470, 30]);
 
-    var xScale2 = d3.scaleLinear().domain(medEarningsAfter8Extent).range([50, 470]);
+    var xScale2 = d3.scaleLinear().domain(meanEarningsAfter8Extent).range([50, 470]);
     var yScale2 = d3.scaleLinear().domain(admissionExtent).range([470, 30]);
 
     var xAxis = d3.axisBottom().scale(xScale);
@@ -293,7 +339,7 @@ d3.csv("data/colleges.csv", function(data) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale(d.medianDebt); })
 	   .attr("cy", function(d) { return yScale(d.admission); })
-	   .attr("r", 2)
+	   .attr("r", 3)
        .classed("public", function(d) {
             return d.pubPrivate === "Public";
        })
@@ -336,9 +382,9 @@ d3.csv("data/colleges.csv", function(data) {
 	   .append("circle")
 	   .attr("id",function(d,i) {return "c" + i;} )
 	   .attr("stroke", "black")
-	   .attr("cx", function(d) { return xScale2(d.medEarningsAfter8); })
+	   .attr("cx", function(d) { return xScale2(d.meanEarningsAfter8); })
 	   .attr("cy", function(d) { return yScale2(d.admission); })
-	   .attr("r", 2)
+	   .attr("r", 3)
        .classed("public", function(d) {
             return d.pubPrivate === "Public";
        })
@@ -411,7 +457,7 @@ d3.csv("data/colleges.csv", function(data) {
 		.attr("y", -6)
 		.style("text-anchor", "end")
         .style("fill", "black")
-		.text("Median Earnings After 8 Years");
+		.text("Mean Earnings After 8 Years");
 
     var y2 = chart2 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
