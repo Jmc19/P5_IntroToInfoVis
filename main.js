@@ -247,7 +247,7 @@ d3.csv("data/colleges.csv", function(data) {
     var yAxisBar1 = d3.axisLeft().scale(yScaleBar1);
 
     var xAxisBar2 = d3.axisBottom().scale(xScaleBar2);
-    var yAxisBar2 = d3.axisBottom().scale(yScaleBar2);
+    var yAxisBar2 = d3.axisLeft().scale(yScaleBar2);
 
 
     //Create SVGs for charts
@@ -261,21 +261,18 @@ d3.csv("data/colleges.csv", function(data) {
 	                .attr("width",width)
 	                .attr("height",height);
 
-
     //TODO: Need to reposition the SVG elements to be below chart 1 and chart 2
     var chart3 = d3.select("#chart3")
                    .append("svg:svg")
                    .attr("width", width)
-                   .attr("height", height)
-                   .style("border", "black")
-                   .style("border-style", "solid");
+                   .attr("height", height);
 
     var chart4 = d3.select("#chart4")
                    .append("svg:svg")
                    .attr("width", width)
-                   .attr("height", height)
-                   .style("border", "black")
-                   .style("border-style", "solid");
+                   .attr("height", height);
+                   // .style("border", "black")
+                   // .style("border-style", "solid");
 
 /*****************************************************************************
                             POINTS SETUP
@@ -429,6 +426,26 @@ d3.csv("data/colleges.csv", function(data) {
 		.style("text-anchor", "end")
         .style("fill", "black")
 		.text(selectedValueY);
+
+    //Dynamic Bar Chart (Bottom Left most one)
+    var xBar1 = chart3.append("g") // create a group node
+                      .attr("transform", "translate(0,"+ (width -30)+ ")")
+                      .call(xAxisBar1) // call the axis generator
+                      .attr("x", width-16)
+                      .attr("y", -6);
+    var yBar1 = chart3.append("g")
+                      .attr("transform", "translate(50,0)")
+                      .call(yAxisBar1);
+    //Static Bar Chart (Bottom Right most one)
+    chart4.append("g")
+          .attr("transform", "translate(0,"+ (width -30)+ ")")
+          .call(xAxisBar2) // call the axis generator
+          .attr("x", width-16)
+          .attr("y", -6);
+    chart4.append("g")
+          .attr("transform", "translate(50,0)")
+          .call(yAxisBar2);
+
 
 
 /**************************************************************************
