@@ -326,6 +326,78 @@ d3.csv("data/colleges.csv", function(data) {
                    // .style("border", "black")
                    // .style("border-style", "solid");
 
+    var brushContainer1 = chart1.append('g')
+        .attr('id', 'brush-container1');
+    var brushContainer2 = chart2.append('g')
+        .attr('id', 'brush-container2');
+
+    var brush1 = d3.brush();
+    var brush2 = d3.brush();
+
+    brush1.on('start', handleBrushStart1)
+      .on('brush', handleBrushMove1);
+
+    brush2.on('start', handleBrushStart2)
+      .on('brush', handleBrushMove2);
+
+    brushContainer1.call(brush1);
+    brushContainer2.call(brush2);
+
+    function handleBrushStart1() {
+        chart1.selectAll('circle').attr("class", function(d) {
+            return d.pubPrivate;
+            }
+        );
+        brushContainer2.call(brush2.move, null);
+        chart2.select("#c" + selectedId).attr("class", "selected");
+    }
+
+    function handleBrushStart2() {
+        chart2.selectAll('circle').attr("class", function(d) {
+            return d.pubPrivate;
+            }
+        );
+        brushContainer1.call(brush1.move, null)
+        chart1.select("#i" + selectedId).attr("class", "selected");
+    }
+
+    function handleBrushMove1() {
+        var sel = d3.event.selection;
+        if (!sel) {
+            return;
+        }
+
+        var [[left, top], [right, bottom]] = sel;
+
+        chart2.selectAll('circle')
+            .attr('class', function(d) {
+            var cx = xScale(d.medianDebt);
+            var cy = yScale(d.admission);
+            if( left <= cx && cx <= right && top <= cy && cy <= bottom)
+                return "selected2";
+            else
+                return d.pubPrivate;
+        });
+    }
+
+    function handleBrushMove2() {
+        var sel = d3.event.selection;
+        if (!sel) {
+            return;
+        }
+
+        var [[left, top], [right, bottom]] = sel;
+        chart1.selectAll('circle')
+            .attr('class', function(d) {
+            var cx = xScale(d.meanEarningsAfter8);
+            var cy = yScale(d.admission);
+            if( left <= cx && cx <= right && top <= cy && cy <= bottom)
+                return "selected2";
+            else
+                return d.pubPrivate;
+        });
+    }
+
 /*****************************************************************************
                             POINTS SETUP
 
