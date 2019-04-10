@@ -279,6 +279,7 @@ d3.csv("data/colleges.csv", function(data) {
     var xAxis2 = d3.axisBottom().scale(xScale2);
     var yAxis2 = d3.axisLeft().scale(yScale2);
 
+    console.log(data.columns.length);
     // Axis setup for Bar Chart
     //TODO: Look at domain and change accordingly, default domain is set
     //to the width and height respecitvely; this should be dynamic
@@ -287,8 +288,9 @@ d3.csv("data/colleges.csv", function(data) {
 
     //This should be the scales for the static bar chart
     var xScaleBar2 = d3.scaleBand()
-                       .domain(yOptions)
-                       .range([50, 470]);
+                       .domain(d3.range(yOptions.length))
+                       .rangeRound([50, 470])
+                       .paddingInner(0.2);
     var yScaleBar2 = d3.scaleLinear().domain([0, 1]).range([470, 30]);
 
     //Assigns the Scales to an Axis
@@ -296,6 +298,8 @@ d3.csv("data/colleges.csv", function(data) {
     var yAxisBar1 = d3.axisLeft().scale(yScaleBar1);
 
     var xAxisBar2 = d3.axisBottom().scale(xScaleBar2);
+                       // .ticks(yOptions.length)
+                       // .tickFormat(function(d, i) {return yOptions[i]});
     var yAxisBar2 = d3.axisLeft().scale(yScaleBar2);
 
 
@@ -524,6 +528,7 @@ d3.csv("data/colleges.csv", function(data) {
     // console.log(d3.mean(data, function(d) {
     //     return d.admission;
     // }));
+
     var averageArray = [d3.mean(data, function(d) {return d.admission;}),
     d3.mean(data, function(d) {return d.undergrads;}),
     d3.mean(data, function(d) {return d.over25;}),
@@ -555,13 +560,17 @@ d3.csv("data/colleges.csv", function(data) {
               .enter()
               .append("rect")
               .attr("class", "bar")
-              .attr("x", function(d, i) {
-                return xScaleBar2(d);
+              .attr("width", xScaleBar2.bandwidth())
+              .attr("height", function(d) {
+                console.log(yScaleBar2(d))
+                console.log(500 - yScaleBar2(d));
+                return ((500 - yScaleBar2(d)) / 1);
               })
-              .attr("y", 285)
-              .attr("width", 5)
-              .attr("height", function(d, i) {
-                return averageArray[i];
+              .attr("x", function(d, i) {
+                return xScaleBar2(i);
+              })
+              .attr("y", function(d) {
+                return 0;
               });
     // chart4.append("g")
     //       .data(data)
