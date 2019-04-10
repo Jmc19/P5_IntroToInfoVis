@@ -286,7 +286,9 @@ d3.csv("data/colleges.csv", function(data) {
     var yScaleBar1 = d3.scaleLinear().domain([0, height]).range([470,30]);
 
     //This should be the scales for the static bar chart
-    var xScaleBar2 = d3.scaleBand().domain(yOptions).range([50, 470]);
+    var xScaleBar2 = d3.scaleBand()
+                       .domain(yOptions)
+                       .range([50, 470]);
     var yScaleBar2 = d3.scaleLinear().domain([0, 1]).range([470, 30]);
 
     //Assigns the Scales to an Axis
@@ -516,22 +518,50 @@ d3.csv("data/colleges.csv", function(data) {
     //         return yScaleBar2(average);
     //       });
 
+    // console.log(d3.mean(data.map(function(d) {
+    //     return d.admission;
+    // })));
+    // console.log(d3.mean(data, function(d) {
+    //     return d.admission;
+    // }));
+    var averageArray = [d3.mean(data, function(d) {return d.admission;}),
+    d3.mean(data, function(d) {return d.undergrads;}),
+    d3.mean(data, function(d) {return d.over25;}),
+    d3.mean(data, function(d) {return d.under25;}),
+    d3.mean(data, function(d) {return d.avgAge;}),
+    d3.mean(data, function(d) {return d.avgFamilyIncome;}),
+    d3.mean(data, function(d) {return d.medFamilyIncome;}),
+    d3.mean(data, function(d) {return d.poverty;}),
+    d3.mean(data, function(d) {return d.white;}),
+    d3.mean(data, function(d) {return d.black;}),
+    d3.mean(data, function(d) {return d.hispanic;}),
+    d3.mean(data, function(d) {return d.asian;}),
+    d3.mean(data, function(d) {return d.amerIndian;}),
+    d3.mean(data, function(d) {return d.pacificIslander;}),
+    d3.mean(data, function(d) {return d.biracial;}),
+    d3.mean(data, function(d) {return d.aliens;}),
+    d3.mean(data, function(d) {return d.avgCost;}),
+    d3.mean(data, function(d) {return d.studentExpenditure;}),
+    d3.mean(data, function(d) {return d.undergradsWithPell;}),
+    d3.mean(data, function(d) {return d.undergradsNoPell;}),
+    d3.mean(data, function(d) {return d.fedLoans;}),
+    d3.mean(data, function(d) {return d.unemployedAfter8;}),
+    d3.mean(data, function(d) {return d.employedAfter8;})
+    ];
+    console.log(averageArray);
     var barsChart4 = chart4.append("g");
     barsChart4.selectAll(".bar")
-              .data(data)
+              .data(averageArray)
               .enter()
               .append("rect")
               .attr("class", "bar")
               .attr("x", function(d, i) {
-                return xScaleBar2(yOptions[i] + 1);
+                return xScaleBar2(d);
               })
               .attr("y", 285)
               .attr("width", 5)
-              .attr("height", function(d) {
-                var average = d3.mean(data, function(d) {
-                    return d.admission;
-                });
-                return yScaleBar2(average);
+              .attr("height", function(d, i) {
+                return averageArray[i];
               });
     // chart4.append("g")
     //       .data(data)
