@@ -13,11 +13,11 @@ body {
 	fill:red;
 }
 /*Added public and private instead of unselected*/
-.public {
+.Public {
 	stroke: green;
 	fill: green;
 }
-.private {
+.Private {
 	stroke: blue;
 	fill: blue;
 }

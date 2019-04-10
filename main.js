@@ -2,6 +2,7 @@ var width = 500;
 var height = 500;
 
 var selectedId = 10000;
+var selectedClass;
 
 var selectedValueY = "Admission Rate";
 
@@ -347,41 +348,19 @@ d3.csv("data/colleges.csv", function(data) {
 	   .attr("cx", function(d) { return xScale(d.medianDebt); })
 	   .attr("cy", function(d) { return yScale(d.admission); })
 	   .attr("r", 3)
-       .classed("public", function(d) {
-            return d.pubPrivate === "Public";
-       })
-       .classed("private", function(d) {
-            return d.pubPrivate === "Private";
+       .attr("class", function(d) { return d.pubPrivate;})
+	   .on("click", function(d,i) {
+            if (selectedId != 10000) {
+                d3.select("#c" + selectedId).attr("class", selectedClass);
+                d3.select("#i" + selectedId).attr("class", selectedClass);
+            }
+
+            d3.select("#c" + i).attr("class", "selected");
+            d3.select("#i" + i).attr("class", "selected");
+            selectedId = i;
+            selectedClass = d.pubPrivate;
+
        });
-	   // .on("click", function(d,i){
-/*****************************************************************************
-            HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
-*****************************************************************************/
- //            var SATMTable = document.getElementById("satm");
- //            SATMTable.innerHTML = "";
- //            SATMTable.append("" + d.SATM);
-
- //            var SATVTable = document.getElementById("satv");
- //            SATVTable.innerHTML = "";
- //            SATVTable.append("" + d.SATV);
-
- //            var ACTTable = document.getElementById("act");
- //            ACTTable.innerHTML = "";
- //            ACTTable.append("" + d.ACT);
-
- //            var GPATable = document.getElementById("gpa");
- //            GPATable.innerHTML = "";
- //            GPATable.append("" + d.GPA);
-
-
- //            d3.select("#c" + selectedId).attr("class", "unselected");
- //            d3.select("#i" + selectedId).attr("class", "unselected");
-
- //            d3.select("#c" + i).attr("class", "selected");
- //            d3.select("#i" + i).attr("class", "selected");
- //            selectedId = i;
-
- //       });
 
     var temp2= chart2.selectAll("circle")
 	   .data(data)
@@ -392,40 +371,19 @@ d3.csv("data/colleges.csv", function(data) {
 	   .attr("cx", function(d) { return xScale2(d.meanEarningsAfter8); })
 	   .attr("cy", function(d) { return yScale2(d.admission); })
 	   .attr("r", 3)
-       .classed("public", function(d) {
-            return d.pubPrivate === "Public";
-       })
-       .classed("private", function(d) {
-            return d.pubPrivate === "Private";
+       .attr("class", function(d) { return d.pubPrivate;})
+	   .on("click", function(d,i){
+            if (selectedId != 10000) {
+                d3.select("#c" + selectedId).attr("class", selectedClass);
+                d3.select("#i" + selectedId).attr("class", selectedClass);
+            }
+
+            d3.select("#c" + i).attr("class", "selected");
+            d3.select("#i" + i).attr("class", "selected");
+            selectedId = i;
+            selectedClass = d.pubPrivate;
+
        });
-	   // .on("click", function(d,i) {
-/*****************************************************************************
-            HERE IS THE CODE FOR THE TABLE STUFF IF WE WANT TO DO IT
-*****************************************************************************/
- //            var SATMTable = document.getElementById("satm");
- //            SATMTable.innerHTML = "";
- //            SATMTable.append("" + d.SATM);
-
- //            var SATVTable = document.getElementById("satv");
- //            SATVTable.innerHTML = "";
- //            SATVTable.append("" + d.SATV);
-
- //            var ACTTable = document.getElementById("act");
- //            ACTTable.innerHTML = "";
- //            ACTTable.append("" + d.ACT);
-
- //            var GPATable = document.getElementById("gpa");
- //            GPATable.innerHTML = "";
- //            GPATable.append("" + d.GPA);
-
-
- //            d3.select("#c" + selectedId).attr("class", "unselected");
- //            d3.select("#i" + selectedId).attr("class", "unselected");
-
- //            d3.select("#i" + i).attr("class", "selected");
- //            d3.select("#c" + i).attr("class", "selected");
- //            selectedId = i;
- //       });
 
 
     chart1 // or something else that selects the SVG element in your visualizations
