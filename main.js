@@ -283,24 +283,22 @@ d3.csv("data/colleges.csv", function(data) {
     // Axis setup for Bar Chart
     //TODO: Look at domain and change accordingly, default domain is set
     //to the width and height respecitvely; this should be dynamic
-    var xScaleBar1 = d3.scaleLinear().domain([0, width]).range([50, 470]);
-    var yScaleBar1 = d3.scaleLinear().domain([0, height]).range([470,30]);
 
     //This should be the scales for the static bar chart
-    var xScaleBar2 = d3.scaleBand()
+    var xScaleBar = d3.scaleBand()
                        .domain(d3.range(yOptions.length))
                        .rangeRound([50, 470])
                        .paddingInner(0.2);
-    var yScaleBar2 = d3.scaleLinear().domain([0, 1]).range([470, 30]);
+    var yScaleBar = d3.scaleLinear().domain([0, 1]).range([470, 30]);
 
     //Assigns the Scales to an Axis
-    var xAxisBar1 = d3.axisBottom().scale(xScaleBar1);
-    var yAxisBar1 = d3.axisLeft().scale(yScaleBar1);
+    var xAxisBar1 = d3.axisBottom().scale(xScaleBar);
+    var yAxisBar1 = d3.axisLeft().scale(yScaleBar);
 
-    var xAxisBar2 = d3.axisBottom().scale(xScaleBar2);
+    var xAxisBar2 = d3.axisBottom().scale(xScaleBar);
                        // .ticks(yOptions.length)
                        // .tickFormat(function(d, i) {return yOptions[i]});
-    var yAxisBar2 = d3.axisLeft().scale(yScaleBar2);
+    var yAxisBar2 = d3.axisLeft().scale(yScaleBar);
 
 
     //Create SVGs for charts
@@ -546,25 +544,39 @@ d3.csv("data/colleges.csv", function(data) {
     ];
     console.log(averageArray.length);
 
+    // var selectedCircle = d3.select(selectedId);
+    // selectedCircle.
+    // var selectedArray;
+    // var barsChart3 = chart3.append("g");
+    // barsChart3.selectAll(".bar")
+    //           .data(averageArray)
+    //           .enter()
+    //           .append("rect")
+    //           .attr("class", "bar")
+    //           .attr("width", xScaleBar.bandwidth())
+    //           .attr("height", function(d, i){
+
+    //           })
+
     var barsChart4 = chart4.append("g");
     barsChart4.selectAll(".bar")
               .data(averageArray)
               .enter()
               .append("rect")
               .attr("class", "bar")
-              .attr("width", xScaleBar2.bandwidth())
+              .attr("width", xScaleBar.bandwidth())
               .attr("height", function(d, i) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
                 console.log(normalizedNum);
-                console.log(500 - yScaleBar2(normalizedNum));
-                return ((500 - yScaleBar2(normalizedNum)));
+                console.log(500 - yScaleBar(normalizedNum));
+                return ((500 - yScaleBar(normalizedNum)));
               })
               .attr("x", function(d, i) {
-                return xScaleBar2(i);
+                return xScaleBar(i);
               })
               .attr("y", function(d, i) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]);
-                return yScaleBar2(normalizedNum);
+                return yScaleBar(normalizedNum);
               });
 
     function normalize(enteredValue, normalizedMin,
