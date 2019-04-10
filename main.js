@@ -287,7 +287,7 @@ d3.csv("data/colleges.csv", function(data) {
 
     //This should be the scales for the static bar chart
     var xScaleBar2 = d3.scaleBand().domain(yOptions).range([50, 470]);
-    var yScaleBar2 = d3.scaleLinear().domain([0, height]).range([470, 30]);
+    var yScaleBar2 = d3.scaleLinear().domain([0, 1]).range([470, 30]);
 
     //Assigns the Scales to an Axis
     var xAxisBar1 = d3.axisBottom().scale(xScaleBar1);
@@ -503,15 +503,48 @@ d3.csv("data/colleges.csv", function(data) {
     // var barsChart3 = chart3.append("g");
     // var barsChart4 = chart4.append("g");
 
+    // chart4.append("rect")
+    //       .attr("x", 100)
+    //       .attr("y", 285)
+    //       .attr("width", 50)
+    //       .attr("height", function(d) {
+    //         var average = d3.mean(data, function(d) {
+    //             return d.admission;
+    //         });
+    //         console.log(average);
+    //         console.log(yScaleBar2(average))
+    //         return yScaleBar2(average);
+    //       });
+
+    var barsChart4 = chart4.append("g");
+    barsChart4.selectAll(".bar")
+              .data(data)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("x", function(d, i) {
+                return xScaleBar2(yOptions[i] + 1);
+              })
+              .attr("y", 285)
+              .attr("width", 5)
+              .attr("height", function(d) {
+                var average = d3.mean(data, function(d) {
+                    return d.admission;
+                });
+                return yScaleBar2(average);
+              });
     // chart4.append("g")
     //       .data(data)
     //       .enter()
     //       .append("rect")
-    //       .attr("x", function(d) {
-    //          //return
-    //       })
-    //       .attr("y", 30)
+    //       .attr("x", 100)
+    //       .attr("y", 285)
     //       .attr("width", 10)
-    //       .attr("height", 500);
+    //       .attr("height", function(d) {
+    //         var average = d3.mean(data, function(d) {
+    //             return d.admission;
+    //         })
+    //         return yScaleBar2(average);
+    //       });
 
 });
