@@ -528,6 +528,19 @@ d3.csv("data/colleges.csv", function(data) {
     // console.log(d3.mean(data, function(d) {
     //     return d.admission;
     // }));
+    var usedColumnHeaders = ["Admission Rate", "Number of Undergraduates",
+    "Percentage of Undergraduates Over 25",
+    "Percentage of Undergraduates Under 25",
+    "Average Age of Entry", "Average Family Income",
+    "Median Family Income", "Poverty Rate",
+    "Percent White", "Percent Black", "Percent Hispanic",
+    "Percent Asian", "Percent American Indian", "Percent Pacific Islander",
+    "Percent Biracial", "Percent Aliens", "Average Cost",
+    "Student Expenditures", "Percent Undergraduates with Pell Grant",
+    "Percent Undergraduates without Pell Grant",
+    "Percentage of Undergraduates with a Federal Loan",
+    "Number of Undergraduates Unemployed After 8 Years",
+    "Number of Undergraduates Employed After 8 Years"];
 
     var averageArray = [d3.mean(data, function(d) {return d.admission;}),
     d3.mean(data, function(d) {return d.undergrads;}),
@@ -563,8 +576,11 @@ d3.csv("data/colleges.csv", function(data) {
               .attr("width", xScaleBar2.bandwidth())
               .attr("height", function(d) {
                 console.log(yScaleBar2(d))
-                console.log(500 - yScaleBar2(d));
-                return ((500 - yScaleBar2(d)) / 1);
+                console.log(d);
+                var normalizedNum = normalize(d, d3.min(averageArray),
+                    d3.max(averageArray), 0, 1);
+                console.log(normalizedNum);
+                return ((500 - yScaleBar2(normalizedNum)));
               })
               .attr("x", function(d, i) {
                 return xScaleBar2(i);
@@ -572,18 +588,14 @@ d3.csv("data/colleges.csv", function(data) {
               .attr("y", function(d) {
                 return 0;
               });
-    // chart4.append("g")
-    //       .data(data)
-    //       .enter()
-    //       .append("rect")
-    //       .attr("x", 100)
-    //       .attr("y", 285)
-    //       .attr("width", 10)
-    //       .attr("height", function(d) {
-    //         var average = d3.mean(data, function(d) {
-    //             return d.admission;
-    //         })
-    //         return yScaleBar2(average);
-    //       });
+
+    function normalize(enteredValue, minEntry, maxEntry,
+        normalizedMin, normalizedMax) {
+        var mx = (enteredValue-minEntry)/(maxEntry-minEntry);
+        var preshiftNormalized = mx*(normalizedMax-normalizedMin);
+        var shiftedNormalized = preshiftNormalized + normalizedMin;
+
+        return shiftedNormalized;
+    }
 
 });
