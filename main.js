@@ -578,12 +578,6 @@ d3.csv("data/colleges.csv", function(data) {
     d3.mean(data, function(d) {return d.employedAfter8;})];
     console.log(averageArray.length);
 
-    //TODO: Add Title to static chart
-    //Green and Red color for bars(?)
-    //At least make the dynamic
-    //Get a key
-    //Clarify the public and private university in Chart 5
-    //Need a checker; if selectedID != 10000 then do stuff
     var barsChart3 = chart3.append("g");
     barsChart3.selectAll(".bar")
               .data(averageArray)
@@ -608,6 +602,12 @@ d3.csv("data/colleges.csv", function(data) {
     // console.log(Object.keys(d3.select(data[387])));
     //console.table(data);
 
+    //TODO: Add Title to static chart
+    //Green and Red color for bars(?)
+    //At least make the dynamic
+    //Get a key
+    //Clarify the public and private university in Chart 5
+    //Need a checker; if selectedID != 10000 then do stuff
     var barsChart4 = chart4.append("g");
     function createDynamicBarChart(sID) {
         barsChart4.selectAll(".bar")
@@ -633,18 +633,30 @@ d3.csv("data/colleges.csv", function(data) {
                   .enter()
                   .append("rect")
                   .attr("class", "bar")
-                  .attr("width", xScaleBar.bandwidth())
-                  .attr("height", function(d, i){
-                    var normalizedNum =
-                    normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
-                    return ((500 - yScaleBar(normalizedNum)));
-                  })
                   .attr("x", function(d, i) {
                     return xScaleBar(i);
+                  })
+                  .transition()
+                  .duration(function(d) {
+                    return Math.random() * 2000;
+                  })
+                  .delay(function(d) {
+                    return Math.random() * 1000;
                   })
                   .attr("y", function(d, i) {
                     var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
                     return yScaleBar(normalizedNum);
+                  })
+                  .attr("width", xScaleBar.bandwidth())
+                  .attr("height", function(d, i){
+                    var normalizedNum =
+                    normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
+                    var heightNum = 500 - yScaleBar(normalizedNum);
+                    if (heightNum < 0) {
+                        return 0;
+                    } else {
+                        return heightNum;
+                    }
                   });
     }
 
