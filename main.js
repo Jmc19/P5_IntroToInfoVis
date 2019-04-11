@@ -348,12 +348,20 @@ d3.csv("data/colleges.csv", function(data) {
             return d.pubPrivate;
             }
         );
+        chart2.selectAll('circle').attr("class", function(d) {
+            return d.pubPrivate;
+            }
+        );
         brushContainer2.call(brush2.move, null);
         chart2.select("#c" + selectedId).attr("class", "selected");
     }
 
     function handleBrushStart2() {
         chart2.selectAll('circle').attr("class", function(d) {
+            return d.pubPrivate;
+            }
+        );
+        chart1.selectAll('circle').attr("class", function(d) {
             return d.pubPrivate;
             }
         );
@@ -389,8 +397,8 @@ d3.csv("data/colleges.csv", function(data) {
         var [[left, top], [right, bottom]] = sel;
         chart1.selectAll('circle')
             .attr('class', function(d) {
-            var cx = xScale(d.meanEarningsAfter8);
-            var cy = yScale(d.admission);
+            var cx = xScale2(d.meanEarningsAfter8);
+            var cy = yScale2(d.admission);
             if( left <= cx && cx <= right && top <= cy && cy <= bottom)
                 return "selected2";
             else
