@@ -635,120 +635,74 @@ d3.csv("data/colleges.csv", function(data) {
         var maxEntry;
         var minEntry;
         if (columnHeader == usedColumnHeaders[0]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.admission;});
-            minEntry = d3.min(data, function(d) {
-                return d.admission;});
+            maxEntry = d3.max(data, function(d) {return d.admission;});
+            minEntry = d3.min(data, function(d) {return d.admission;});
         } else if (columnHeader == usedColumnHeaders[1]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.undergrads;});
-            minEntry = d3.min(data, function(d) {
-                return d.undergrads;});
+            maxEntry = d3.max(data, function(d) {return d.undergrads;});
+            minEntry = d3.min(data, function(d) {return d.undergrads;});
         }  else if (columnHeader == usedColumnHeaders[2]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.over25;});
-            minEntry = d3.min(data, function(d) {
-                return d.over25;});
+            maxEntry = d3.max(data, function(d) {return d.over25;});
+            minEntry = d3.min(data, function(d) {return d.over25;});
         } else if (columnHeader == usedColumnHeaders[3]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.under25;});
-            minEntry = d3.min(data, function(d) {
-                return d.under25;});
+            maxEntry = d3.max(data, function(d) {return d.under25;});
+            minEntry = d3.min(data, function(d) {return d.under25;});
         } else if (columnHeader == usedColumnHeaders[4]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.avgAge;});
-            minEntry = d3.min(data, function(d) {
-                return d.avgAge;});
+            maxEntry = d3.max(data, function(d) {return d.avgAge;});
+            minEntry = d3.min(data, function(d) {return d.avgAge;});
         } else if (columnHeader == usedColumnHeaders[5]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.avgFamilyIncome;});
-            minEntry = d3.min(data, function(d) {
-                return d.avgFamilyIncome;});
+            maxEntry = d3.max(data, function(d) {return d.avgFamilyIncome;});
+            minEntry = d3.min(data, function(d) {return d.avgFamilyIncome;});
         } else if (columnHeader == usedColumnHeaders[6]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.medFamilyIncome;});
-            minEntry = d3.min(data, function(d) {
-                return d.medFamilyIncome;});
+            maxEntry = d3.max(data, function(d) {return d.medFamilyIncome;});
+            minEntry = d3.min(data, function(d) {return d.medFamilyIncome;});
         } else if (columnHeader == usedColumnHeaders[7]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.poverty;});
-            minEntry = d3.min(data, function(d) {
-                return d.poverty;});
+            maxEntry = d3.max(data, function(d) {return d.poverty;});
+            minEntry = d3.min(data, function(d) {return d.poverty;});
         }  else if (columnHeader == usedColumnHeaders[8]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.white;});
-            minEntry = d3.min(data, function(d) {
-                return d.white;});
+            maxEntry = d3.max(data, function(d) {return d.white;});
+            minEntry = d3.min(data, function(d) {return d.white;});
         } else if (columnHeader == usedColumnHeaders[9]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.black;});
-            minEntry = d3.min(data, function(d) {
-                return d.black;});
+            maxEntry = d3.max(data, function(d) {return d.black;});
+            minEntry = d3.min(data, function(d) {return d.black;});
         } else if (columnHeader == usedColumnHeaders[10]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.hispanic;});
-            minEntry = d3.min(data, function(d) {
-                return d.hispanic;});
+            maxEntry = d3.max(data, function(d) {return d.hispanic;});
+            minEntry = d3.min(data, function(d) {return d.hispanic;});
         } else if (columnHeader == usedColumnHeaders[11]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.asian;});
-            minEntry = d3.min(data, function(d) {
-                return d.asian;});
+            maxEntry = d3.max(data, function(d) {return d.asian;});
+            minEntry = d3.min(data, function(d) {return d.asian;});
         } else if (columnHeader == usedColumnHeaders[12]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.amerIndian;});
-            minEntry = d3.min(data, function(d) {
-                return d.amerIndian;});
+            maxEntry = d3.max(data, function(d) {return d.amerIndian;});
+            minEntry = d3.min(data, function(d) {return d.amerIndian;});
         } else if (columnHeader == usedColumnHeaders[13]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.pacificIslander;});
-            minEntry = d3.min(data, function(d) {
-                return d.pacificIslander;});
+            maxEntry = d3.max(data, function(d) {return d.pacificIslander;});
+            minEntry = d3.min(data, function(d) {return d.pacificIslander;});
         } else if (columnHeader == usedColumnHeaders[14]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.biracial;});
-            minEntry = d3.min(data, function(d) {
-                return d.biracial;});
+            maxEntry = d3.max(data, function(d) {return d.biracial;});
+            minEntry = d3.min(data, function(d) {return d.biracial;});
         } else if (columnHeader == usedColumnHeaders[15]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.aliens;});
-            minEntry = d3.min(data, function(d) {
-                return d.aliens;});
+            maxEntry = d3.max(data, function(d) {return d.aliens;});
+            minEntry = d3.min(data, function(d) {return d.aliens;});
         } else if (columnHeader == usedColumnHeaders[16]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.avgCost;});
-            minEntry = d3.min(data, function(d) {
-                return d.avgCost;});
+            maxEntry = d3.max(data, function(d) {return d.avgCost;});
+            minEntry = d3.min(data, function(d) {return d.avgCost;});
         } else if (columnHeader == usedColumnHeaders[17]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.studentExpenditure;});
-            minEntry = d3.min(data, function(d) {
-                return d.studentExpenditure;});
+            maxEntry = d3.max(data, function(d) {return d.studentExpenditure;});
+            minEntry = d3.min(data, function(d) {return d.studentExpenditure;});
         } else if (columnHeader == usedColumnHeaders[18]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.undergradsWithPell;});
-            minEntry = d3.min(data, function(d) {
-                return d.undergradsWithPell;});
+            maxEntry = d3.max(data, function(d) {return d.undergradsWithPell;});
+            minEntry = d3.min(data, function(d) {return d.undergradsWithPell;});
         } else if (columnHeader == usedColumnHeaders[19]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.undergradsNoPell;});
-            minEntry = d3.min(data, function(d) {
-                return d.undergradsNoPell;});
+            maxEntry = d3.max(data, function(d) {return d.undergradsNoPell;});
+            minEntry = d3.min(data, function(d) {return d.undergradsNoPell;});
         } else if (columnHeader == usedColumnHeaders[20]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.fedLoans;});
-            minEntry = d3.min(data, function(d) {
-                return d.fedLoans;});
+            maxEntry = d3.max(data, function(d) {return d.fedLoans;});
+            minEntry = d3.min(data, function(d) {return d.fedLoans;});
         } else if (columnHeader == usedColumnHeaders[21]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.unemployedAfter8;});
-            minEntry = d3.min(data, function(d) {
-                return d.unemployedAfter8;});
+            maxEntry = d3.max(data, function(d) {return d.unemployedAfter8;});
+            minEntry = d3.min(data, function(d) {return d.unemployedAfter8;});
         } else if (columnHeader == usedColumnHeaders[22]) {
-            maxEntry = d3.max(data, function(d) {
-                return d.employedAfter8;});
-            minEntry = d3.min(data, function(d) {
-                return d.employedAfter8;});
+            maxEntry = d3.max(data, function(d) {return d.employedAfter8;});
+            minEntry = d3.min(data, function(d) {return d.employedAfter8;});
         }
 
         var mx = (enteredValue-minEntry)/(maxEntry-minEntry);
