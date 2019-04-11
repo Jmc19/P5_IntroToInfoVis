@@ -274,10 +274,10 @@ d3.csv("data/colleges.csv", function(data) {
     var xScale2 = d3.scaleLinear().domain(meanEarningsAfter8Extent).range([50, 470]);
     var yScale2 = d3.scaleLinear().domain(admissionExtent).range([470, 30]);
 
-    var xAxis = d3.axisBottom().scale(xScale);
+    var xAxis = d3.axisBottom().scale(xScale).ticks(6);
     var yAxis = d3.axisLeft().scale(yScale);
 
-    var xAxis2 = d3.axisBottom().scale(xScale2);
+    var xAxis2 = d3.axisBottom().scale(xScale2).ticks(6);
     var yAxis2 = d3.axisLeft().scale(yScale2);
 
     // Axis setup for Bar Chart
