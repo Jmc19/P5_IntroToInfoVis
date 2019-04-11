@@ -34,14 +34,19 @@ path.domain {
 	clear:both;
 }
 #chart1 {
+	left:405px;
+	position:absolute;
     float:left;
 }
 #chart2{
+	left:905px;
+	position:absolute;
 	float:left;
 }
-/*dpn't think that we need this one, but I'll keep it just in case for now*/
+
 #chart3 {
 	/*bottom:-375px;*/
+	left:405px;
 	top:482px;
 	position:absolute;
 	float:left;
@@ -49,14 +54,36 @@ path.domain {
 #chart4 {
 	/*bottom:-375px;*/
 	top:482px;
-	left:508px;
+	left:905px; /*was 508 px*/
 	position:absolute;
 	float:left;
 }
 
 #chart5 {
 	top:522px;
-	left:1000px;
+	left:1492px;
+	position:absolute;
+	float:left;
+}
+
+#chart6 {
+	top:522px;
+	left:30px;
+	position:absolute;
+	float:left;
+}
+
+#uniName {
+	text-decoration:underline;
+}
+
+.uni {
+	text-decoration:underline;
+}
+
+.select{
+	top:30px;
+	left:30px;
 	position:absolute;
 	float:left;
 }

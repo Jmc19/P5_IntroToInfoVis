@@ -597,6 +597,30 @@ d3.csv("data/colleges.csv", function(data) {
                 return yScaleBar(normalizedNum) - 8;
               });
 
+    d3.select("#admissionStatic").text(averageArray[0].toFixed(3));
+    d3.select("#undergradsStatic").text(averageArray[1].toFixed(3));
+    d3.select("#over25Static").text(averageArray[2].toFixed(3));
+    d3.select("#under25Static").text(averageArray[3].toFixed(3));
+    d3.select("#avgAgeStatic").text(averageArray[4].toFixed(3));
+    d3.select("#avgFamilyIncomeStatic").text(averageArray[5].toFixed(3));
+    d3.select("#medFamilyIncomeStatic").text(averageArray[6].toFixed(3));
+    d3.select("#povertyStatic").text(averageArray[7].toFixed(3));
+    d3.select("#whiteStatic").text(averageArray[8].toFixed(3));
+    d3.select("#blackStatic").text(averageArray[9].toFixed(3));
+    d3.select("#hispanicStatic").text(averageArray[10].toFixed(3));
+    d3.select("#asianStatic").text(averageArray[11].toFixed(3));
+    d3.select("#amerIndianStatic").text(averageArray[12].toFixed(3));
+    d3.select("#pacificIslanderStatic").text(averageArray[13].toFixed(3));
+    d3.select("#biracialStatic").text(averageArray[14].toFixed(3));
+    d3.select("#aliensStatic").text(averageArray[15].toFixed(3));
+    d3.select("#avgCostStatic").text(averageArray[16].toFixed(3));
+    d3.select("#studentExpenditureStatic").text(averageArray[17].toFixed(3));
+    d3.select("#undergradsWithPellStatic").text(averageArray[18].toFixed(3));
+    d3.select("#undergradsNoPellStatic").text(averageArray[19].toFixed(3));
+    d3.select("#fedLoansStatic").text(averageArray[20].toFixed(3));
+    d3.select("#unemployedAfter8Static").text(averageArray[21].toFixed(3));
+    d3.select("#employedAfter8Static").text(averageArray[22].toFixed(3));
+
     // console.log(data[387].Name);
     // console.log(d3.select(data[387]));
     // console.log(Object.keys(d3.select(data[387])));
@@ -662,29 +686,29 @@ d3.csv("data/colleges.csv", function(data) {
 
     function setDetails(d) {
         d3.select("#uniName").text(d.Name);
-        d3.select("#admission").text(d.admission);
-        d3.select("#undergrads").text(d.undergrads);
-        d3.select("#over25").text(d.over25);
-        d3.select("#under25").text(d.under25);
-        d3.select("#avgAge").text(d.avgAge);
-        d3.select("#avgFamilyIncome").text(d.avgFamilyIncome);
-        d3.select("#medFamilyIncome").text(d.medFamilyIncome);
-        d3.select("#poverty").text(d.poverty);
-        d3.select("#white").text(d.white);
-        d3.select("#black").text(d.black);
-        d3.select("#hispanic").text(d.hispanic);
-        d3.select("#asian").text(d.asian);
-        d3.select("#amerIndian").text(d.amerIndian);
-        d3.select("#pacificIslander").text(d.pacificIslander);
-        d3.select("#biracial").text(d.biracial);
-        d3.select("#aliens").text(d.aliens);
-        d3.select("#avgCost").text(d.avgCost);
-        d3.select("#studentExpenditure").text(d.studentExpenditure);
-        d3.select("#undergradsWithPell").text(d.undergradsWithPell);
-        d3.select("#undergradsNoPell").text(d.undergradsNoPell);
-        d3.select("#fedLoans").text(d.fedLoans);
-        d3.select("#unemployedAfter8").text(d.unemployedAfter8);
-        d3.select("#employedAfter8").text(d.employedAfter8);
+        d3.select("#admission").text(d.admission.toFixed(3));
+        d3.select("#undergrads").text(d.undergrads.toFixed(3));
+        d3.select("#over25").text(d.over25.toFixed(3));
+        d3.select("#under25").text(d.under25.toFixed(3));
+        d3.select("#avgAge").text(d.avgAge.toFixed(3));
+        d3.select("#avgFamilyIncome").text(d.avgFamilyIncome.toFixed(3));
+        d3.select("#medFamilyIncome").text(d.medFamilyIncome.toFixed(3));
+        d3.select("#poverty").text(d.poverty.toFixed(3));
+        d3.select("#white").text(d.white.toFixed(3));
+        d3.select("#black").text(d.black.toFixed(3));
+        d3.select("#hispanic").text(d.hispanic.toFixed(3));
+        d3.select("#asian").text(d.asian.toFixed(3));
+        d3.select("#amerIndian").text(d.amerIndian.toFixed(3));
+        d3.select("#pacificIslander").text(d.pacificIslander.toFixed(3));
+        d3.select("#biracial").text(d.biracial.toFixed(3));
+        d3.select("#aliens").text(d.aliens.toFixed(3));
+        d3.select("#avgCost").text(d.avgCost.toFixed(3));
+        d3.select("#studentExpenditure").text(d.studentExpenditure.toFixed(3));
+        d3.select("#undergradsWithPell").text(d.undergradsWithPell.toFixed(3));
+        d3.select("#undergradsNoPell").text(d.undergradsNoPell.toFixed(3));
+        d3.select("#fedLoans").text(d.fedLoans.toFixed(3));
+        d3.select("#unemployedAfter8").text(d.unemployedAfter8.toFixed(3));
+        d3.select("#employedAfter8").text(d.employedAfter8.toFixed(3));
     }
 
     function normalize(enteredValue, normalizedMin,
