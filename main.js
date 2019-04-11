@@ -431,6 +431,7 @@ d3.csv("data/colleges.csv", function(data) {
             d3.select("#i" + i).attr("class", "selected");
             selectedId = i;
             selectedClass = d.pubPrivate;
+            createDynamicBarChart(selectedId);
             setDetails(d);
             console.log(this.id);
             console.log(d.Name);
@@ -577,6 +578,12 @@ d3.csv("data/colleges.csv", function(data) {
     d3.mean(data, function(d) {return d.employedAfter8;})];
     console.log(averageArray.length);
 
+    //TODO: Add Title to static chart
+    //Green and Red color for bars(?)
+    //At least make the dynamic
+    //Get a key
+    //Clarify the public and private university in Chart 5
+    //Need a checker; if selectedID != 10000 then do stuff
     var barsChart3 = chart3.append("g");
     barsChart3.selectAll(".bar")
               .data(averageArray)
@@ -600,38 +607,46 @@ d3.csv("data/colleges.csv", function(data) {
     // console.log(d3.select(data[387]));
     // console.log(Object.keys(d3.select(data[387])));
     //console.table(data);
-    var selectedData = data[1]; //change the num to selectedID when ready
-    console.log(selectedData);
-    var selectedDataArray = [selectedData.admission,
-    selectedData.undergrads, selectedData.over25,
-    selectedData.under25, selectedData.avgAge, selectedData.avgFamilyIncome,
-    selectedData.medFamilyIncome, selectedData.poverty, selectedData.white,
-    selectedData.black, selectedData.hispanic, selectedData.asian,
-    selectedData.amerIndian, selectedData.pacificIslander,
-    selectedData.biracial, selectedData.aliens, selectedData.avgCost,
-    selectedData.studentExpenditure, selectedData.undergradsWithPell,
-    selectedData.undergradsNoPell, selectedData.fedLoans,
-    selectedData.unemployedAfter8, selectedData.employedAfter8];
-    console.log(selectedDataArray);
 
     var barsChart4 = chart4.append("g");
-    barsChart4.selectAll(".bar")
-              .data(selectedDataArray)
-              .enter()
-              .append("rect")
-              .attr("class", "bar")
-              .attr("width", xScaleBar.bandwidth())
-              .attr("height", function(d, i){
-                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
-                return ((500 - yScaleBar(normalizedNum)));
-              })
-              .attr("x", function(d, i) {
-                return xScaleBar(i);
-              })
-              .attr("y", function(d, i) {
-                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
-                return yScaleBar(normalizedNum);
-              });
+    function createDynamicBarChart(sID) {
+        barsChart4.selectAll(".bar")
+                  .remove();
+
+        var selectedData = data[sID]; //change the num to selectedID when ready
+        console.log(selectedData);
+
+        var selectedDataArray = [selectedData.admission,
+        selectedData.undergrads, selectedData.over25,
+        selectedData.under25, selectedData.avgAge, selectedData.avgFamilyIncome,
+        selectedData.medFamilyIncome, selectedData.poverty, selectedData.white,
+        selectedData.black, selectedData.hispanic, selectedData.asian,
+        selectedData.amerIndian, selectedData.pacificIslander,
+        selectedData.biracial, selectedData.aliens, selectedData.avgCost,
+        selectedData.studentExpenditure, selectedData.undergradsWithPell,
+        selectedData.undergradsNoPell, selectedData.fedLoans,
+        selectedData.unemployedAfter8, selectedData.employedAfter8];
+        console.log(selectedDataArray);
+
+        barsChart4.selectAll(".bar")
+                  .data(selectedDataArray)
+                  .enter()
+                  .append("rect")
+                  .attr("class", "bar")
+                  .attr("width", xScaleBar.bandwidth())
+                  .attr("height", function(d, i){
+                    var normalizedNum =
+                    normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
+                    return ((500 - yScaleBar(normalizedNum)));
+                  })
+                  .attr("x", function(d, i) {
+                    return xScaleBar(i);
+                  })
+                  .attr("y", function(d, i) {
+                    var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
+                    return yScaleBar(normalizedNum);
+                  });
+    }
 
     function setDetails(d) {
         d3.select("#uniName").text(d.Name);
