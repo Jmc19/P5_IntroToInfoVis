@@ -54,6 +54,13 @@ path.domain {
 	float:left;
 }
 
+#chart5 {
+	top:522px;
+	left:995px;
+	position:absolute;
+	float:left;
+}
+
 .brush .extent {
 	fill-opacity: .1;
 	stroke: #fff;
