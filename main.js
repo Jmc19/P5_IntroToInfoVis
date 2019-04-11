@@ -380,7 +380,55 @@ d3.csv("data/colleges.csv", function(data) {
         chart2.selectAll('circle')
             .attr('class', function(d) {
             var cx = xScale(d.medianDebt);
-            var cy = yScale(d.admission);
+            if (selectedValueY === "Admission Rate") {
+                var cy = yScale(d.admission);
+            } else if (selectedValueY === "Number of Undergraduates") {
+                var cy = yScale(d.undergrads);
+            } else if (selectedValueY === "Percentage of Undergraduates Over 25") {
+                var cy = yScale(d.over25);
+            } else if (selectedValueY === "Percentage of Undergraduates Under 25") {
+                var cy = yScale(d.under25);
+            } else if (selectedValueY === "Average Age of Entry") {
+                var cy = yScale(d.avgAge);
+            } else if (selectedValueY === "Average Family Income") {
+                var cy = yScale(d.avgFamilyIncome);
+            } else if (selectedValueY === "Median Family Income") {
+                var cy = yScale(d.medFamilyIncome);
+            } else if (selectedValueY === "Poverty Rate") {
+                var cy = yScale(d.poverty);
+            } else if (selectedValueY === "Percent White") {
+                var cy = yScale(d.white);
+            } else if (selectedValueY === "Percent Black") {
+                var cy = yScale(d.black);
+            } else if (selectedValueY === "Percent Hispanic") {
+                var cy = yScale(d.hispanic);
+            } else if (selectedValueY === "Percent Asian") {
+                var cy = yScale(d.asian);
+            } else if (selectedValueY === "Percent American Indian") {
+                var cy = yScale(d.amerIndian);
+            } else if (selectedValueY === "Percent Pacific Islander") {
+                var cy = yScale(d.pacificIslander);
+            } else if (selectedValueY === "Percent Biracial") {
+                var cy = yScale(d.biracial);
+            } else if (selectedValueY === "Percent Aliens") {
+                var cy = yScale(d.aliens);
+            } else if (selectedValueY === "Average Cost") {
+                var cy = yScale(d.avgCost);
+            } else if (selectedValueY === "Student Expenditures") {
+                var cy = yScale(d.studentExpenditure);
+            } else if (selectedValueY === "Percent Undergraduates with Pell Grant") {
+                var cy = yScale(d.undergradsWithPell);
+            } else if (selectedValueY === "Percent Undergraduates without Pell Grant") {
+                var cy = yScale(d.undergradsNoPell);
+            } else if (selectedValueY === "Percentage of Undergraduates with a Federal Loan") {
+                var cy = yScale(d.fedLoans);
+            } else if (selectedValueY === "Number of Undergraduates Unemployed After 8 Years") {
+                var cy = yScale(d.unemployedAfter8);
+            } else if (selectedValueY === "Number of Undergraduates Employed After 8 Years") {
+                var cy = yScale(d.employedAfter8);
+            } else {
+                console.log("Unexpected Event")
+            }
             if( left <= cx && cx <= right && top <= cy && cy <= bottom)
                 return "selected2";
             else
@@ -398,7 +446,55 @@ d3.csv("data/colleges.csv", function(data) {
         chart1.selectAll('circle')
             .attr('class', function(d) {
             var cx = xScale2(d.meanEarningsAfter8);
-            var cy = yScale2(d.admission);
+            if (selectedValueY === "Admission Rate") {
+                var cy = yScale2(d.admission);
+            } else if (selectedValueY === "Number of Undergraduates") {
+                var cy = yScale2(d.undergrads);
+            } else if (selectedValueY === "Percentage of Undergraduates Over 25") {
+                var cy = yScale2(d.over25);
+            } else if (selectedValueY === "Percentage of Undergraduates Under 25") {
+                var cy = yScale2(d.under25);
+            } else if (selectedValueY === "Average Age of Entry") {
+                var cy = yScale2(d.avgAge);
+            } else if (selectedValueY === "Average Family Income") {
+                var cy = yScale2(d.avgFamilyIncome);
+            } else if (selectedValueY === "Median Family Income") {
+                var cy = yScale2(d.medFamilyIncome);
+            } else if (selectedValueY === "Poverty Rate") {
+                var cy = yScale2(d.poverty);
+            } else if (selectedValueY === "Percent White") {
+                var cy = yScale2(d.white);
+            } else if (selectedValueY === "Percent Black") {
+                var cy = yScale2(d.black);
+            } else if (selectedValueY === "Percent Hispanic") {
+                var cy = yScale2(d.hispanic);
+            } else if (selectedValueY === "Percent Asian") {
+                var cy = yScale2(d.asian);
+            } else if (selectedValueY === "Percent American Indian") {
+                var cy = yScale2(d.amerIndian);
+            } else if (selectedValueY === "Percent Pacific Islander") {
+                var cy = yScale2(d.pacificIslander);
+            } else if (selectedValueY === "Percent Biracial") {
+                var cy = yScale2(d.biracial);
+            } else if (selectedValueY === "Percent Aliens") {
+                var cy = yScale2(d.aliens);
+            } else if (selectedValueY === "Average Cost") {
+                var cy = yScale2(d.avgCost);
+            } else if (selectedValueY === "Student Expenditures") {
+                var cy = yScale2(d.studentExpenditure);
+            } else if (selectedValueY === "Percent Undergraduates with Pell Grant") {
+                var cy = yScale2(d.undergradsWithPell);
+            } else if (selectedValueY === "Percent Undergraduates without Pell Grant") {
+                var cy = yScale2(d.undergradsNoPell);
+            } else if (selectedValueY === "Percentage of Undergraduates with a Federal Loan") {
+                var cy = yScale2(d.fedLoans);
+            } else if (selectedValueY === "Number of Undergraduates Unemployed After 8 Years") {
+                var cy = yScale2(d.unemployedAfter8);
+            } else if (selectedValueY === "Number of Undergraduates Employed After 8 Years") {
+                var cy = yScale2(d.employedAfter8);
+            } else {
+                console.log("Unexpected Event")
+            }
             if( left <= cx && cx <= right && top <= cy && cy <= bottom)
                 return "selected2";
             else
