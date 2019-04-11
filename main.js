@@ -280,11 +280,7 @@ d3.csv("data/colleges.csv", function(data) {
     var xAxis2 = d3.axisBottom().scale(xScale2);
     var yAxis2 = d3.axisLeft().scale(yScale2);
 
-    console.log(data.columns.length);
     // Axis setup for Bar Chart
-    //TODO: Look at domain and change accordingly, default domain is set
-    //to the width and height respecitvely; this should be dynamic
-
     //This should be the scales for the static bar chart
     var xScaleBar = d3.scaleBand()
                        .domain(d3.range(yOptions.length))
@@ -313,7 +309,6 @@ d3.csv("data/colleges.csv", function(data) {
 	                .attr("width",width)
 	                .attr("height",height);
 
-    //TODO: Need to reposition the SVG elements to be below chart 1 and chart 2
     var chart3 = d3.select("#chart3")
                    .append("svg:svg")
                    .attr("width", width)
@@ -325,6 +320,11 @@ d3.csv("data/colleges.csv", function(data) {
                    .attr("height", height);
                    // .style("border", "black")
                    // .style("border-style", "solid");
+
+/****************************************************************************
+                                BRUSH SETUP
+
+*****************************************************************************/
 
     var brushContainer1 = chart1.append('g')
         .attr('id', 'brush-container1');
@@ -424,12 +424,13 @@ d3.csv("data/colleges.csv", function(data) {
                 d3.select("#c" + selectedId).attr("class", selectedClass);
                 d3.select("#i" + selectedId).attr("class", selectedClass);
             }
-
             d3.select("#c" + i).attr("class", "selected");
             d3.select("#i" + i).attr("class", "selected");
             selectedId = i;
             selectedClass = d.pubPrivate;
-
+            console.log(this.id);
+            console.log(d.Name);
+            console.log(selectedId);
        });
 
     var temp2= chart2.selectAll("circle")
@@ -570,26 +571,11 @@ d3.csv("data/colleges.csv", function(data) {
     d3.mean(data, function(d) {return d.undergradsNoPell;}),
     d3.mean(data, function(d) {return d.fedLoans;}),
     d3.mean(data, function(d) {return d.unemployedAfter8;}),
-    d3.mean(data, function(d) {return d.employedAfter8;})
-    ];
+    d3.mean(data, function(d) {return d.employedAfter8;})];
     console.log(averageArray.length);
 
-    // var selectedCircle = d3.select(selectedId);
-    // selectedCircle.
-    // var selectedArray;
-    // var barsChart3 = chart3.append("g");
-    // barsChart3.selectAll(".bar")
-    //           .data(averageArray)
-    //           .enter()
-    //           .append("rect")
-    //           .attr("class", "bar")
-    //           .attr("width", xScaleBar.bandwidth())
-    //           .attr("height", function(d, i){
-
-    //           })
-
-    var barsChart4 = chart4.append("g");
-    barsChart4.selectAll(".bar")
+    var barsChart3 = chart3.append("g");
+    barsChart3.selectAll(".bar")
               .data(averageArray)
               .enter()
               .append("rect")
@@ -597,8 +583,6 @@ d3.csv("data/colleges.csv", function(data) {
               .attr("width", xScaleBar.bandwidth())
               .attr("height", function(d, i) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
-                console.log(normalizedNum);
-                console.log(500 - yScaleBar(normalizedNum));
                 return ((500 - yScaleBar(normalizedNum)));
               })
               .attr("x", function(d, i) {
@@ -606,6 +590,43 @@ d3.csv("data/colleges.csv", function(data) {
               })
               .attr("y", function(d, i) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]);
+                return yScaleBar(normalizedNum);
+              });
+
+    // console.log(data[387].Name);
+    // console.log(d3.select(data[387]));
+    // console.log(Object.keys(d3.select(data[387])));
+    //console.table(data);
+    var selectedData = data[1]; //change the num to selectedID when ready
+    console.log(selectedData);
+    var selectedDataArray = [selectedData.admission,
+    selectedData.undergrads, selectedData.over25,
+    selectedData.under25, selectedData.avgAge, selectedData.avgFamilyIncome,
+    selectedData.medFamilyIncome, selectedData.poverty, selectedData.white,
+    selectedData.black, selectedData.hispanic, selectedData.asian,
+    selectedData.amerIndian, selectedData.pacificIslander,
+    selectedData.biracial, selectedData.aliens, selectedData.avgCost,
+    selectedData.studentExpenditure, selectedData.undergradsWithPell,
+    selectedData.undergradsNoPell, selectedData.fedLoans,
+    selectedData.unemployedAfter8, selectedData.employedAfter8];
+    console.log(selectedDataArray);
+
+    var barsChart4 = chart4.append("g");
+    barsChart4.selectAll(".bar")
+              .data(selectedDataArray)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("width", xScaleBar.bandwidth())
+              .attr("height", function(d, i){
+                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
+                return ((500 - yScaleBar(normalizedNum)));
+              })
+              .attr("x", function(d, i) {
+                return xScaleBar(i);
+              })
+              .attr("y", function(d, i) {
+                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
                 return yScaleBar(normalizedNum);
               });
 
