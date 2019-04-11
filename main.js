@@ -428,6 +428,7 @@ d3.csv("data/colleges.csv", function(data) {
             d3.select("#i" + i).attr("class", "selected");
             selectedId = i;
             selectedClass = d.pubPrivate;
+            setDetails(d);
             console.log(this.id);
             console.log(d.Name);
             console.log(selectedId);
@@ -448,12 +449,11 @@ d3.csv("data/colleges.csv", function(data) {
                 d3.select("#c" + selectedId).attr("class", selectedClass);
                 d3.select("#i" + selectedId).attr("class", selectedClass);
             }
-
             d3.select("#c" + i).attr("class", "selected");
             d3.select("#i" + i).attr("class", "selected");
             selectedId = i;
             selectedClass = d.pubPrivate;
-
+            setDetails(d);
        });
 
 
@@ -629,6 +629,33 @@ d3.csv("data/colleges.csv", function(data) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
                 return yScaleBar(normalizedNum);
               });
+
+    function setDetails(d) {
+        d3.select("#uniName").text(d.Name);
+        d3.select("#admission").text(d.admission);
+        d3.select("#undergrads").text(d.undergrads);
+        d3.select("#over25").text(d.over25);
+        d3.select("#under25").text(d.under25);
+        d3.select("#avgAge").text(d.avgAge);
+        d3.select("#avgFamilyIncome").text(d.avgFamilyIncome);
+        d3.select("#medFamilyIncome").text(d.medFamilyIncome);
+        d3.select("#poverty").text(d.poverty);
+        d3.select("#white").text(d.white);
+        d3.select("#black").text(d.black);
+        d3.select("#hispanic").text(d.hispanic);
+        d3.select("#asian").text(d.asian);
+        d3.select("#amerIndian").text(d.amerIndian);
+        d3.select("#pacificIslander").text(d.pacificIslander);
+        d3.select("#biracial").text(d.biracial);
+        d3.select("#aliens").text(d.aliens);
+        d3.select("#avgCost").text(d.avgCost);
+        d3.select("#studentExpenditure").text(d.studentExpenditure);
+        d3.select("#undergradsWithPell").text(d.undergradsWithPell);
+        d3.select("#undergradsNoPell").text(d.undergradsNoPell);
+        d3.select("#fedLoans").text(d.fedLoans);
+        d3.select("#unemployedAfter8").text(d.unemployedAfter8);
+        d3.select("#employedAfter8").text(d.employedAfter8);
+    }
 
     function normalize(enteredValue, normalizedMin,
         normalizedMax, columnHeader) {
