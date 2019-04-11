@@ -457,6 +457,7 @@ d3.csv("data/colleges.csv", function(data) {
             d3.select("#i" + i).attr("class", "selected");
             selectedId = i;
             selectedClass = d.pubPrivate;
+            createDynamicBarChart(selectedId);
             setDetails(d);
        });
 
@@ -576,7 +577,6 @@ d3.csv("data/colleges.csv", function(data) {
     d3.mean(data, function(d) {return d.fedLoans;}),
     d3.mean(data, function(d) {return d.unemployedAfter8;}),
     d3.mean(data, function(d) {return d.employedAfter8;})];
-    console.log(averageArray.length);
 
     var barsChart3 = chart3.append("g");
     barsChart3.selectAll(".bar")
@@ -641,7 +641,7 @@ d3.csv("data/colleges.csv", function(data) {
                     return Math.random() * 2000;
                   })
                   .delay(function(d) {
-                    return Math.random() * 1000;
+                    return Math.random() * 200;
                   })
                   .attr("y", function(d, i) {
                     var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
