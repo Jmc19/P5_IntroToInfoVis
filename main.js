@@ -520,18 +520,18 @@ d3.csv("data/colleges.csv", function(data) {
                       .call(xAxisBar1) // call the axis generator
                       .attr("x", width-16)
                       .attr("y", -6);
-    var yBar1 = chart3.append("g")
-                      .attr("transform", "translate(50,0)")
-                      .call(yAxisBar1);
+    // var yBar1 = chart3.append("g")
+    //                   .attr("transform", "translate(50,0)")
+    //                   .call(yAxisBar1);
     //Static Bar Chart (Bottom Right most one)
     chart4.append("g")
           .attr("transform", "translate(0,"+ (width -30)+ ")")
           .call(xAxisBar2)
           .attr("x", width-16)
           .attr("y", -6);
-    chart4.append("g")
-          .attr("transform", "translate(50,0)")
-          .call(yAxisBar2);
+    // chart4.append("g")
+    //       .attr("transform", "translate(50,0)")
+    //       .call(yAxisBar2);
 
 
 
@@ -586,7 +586,7 @@ d3.csv("data/colleges.csv", function(data) {
               .attr("class", "bar")
               .attr("width", xScaleBar.bandwidth())
               .attr("height", function(d, i) {
-                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
+                var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]) - 0.05;
                 return ((500 - yScaleBar(normalizedNum)));
               })
               .attr("x", function(d, i) {
@@ -594,7 +594,7 @@ d3.csv("data/colleges.csv", function(data) {
               })
               .attr("y", function(d, i) {
                 var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i]);
-                return yScaleBar(normalizedNum);
+                return yScaleBar(normalizedNum) - 8;
               });
 
     // console.log(data[387].Name);
@@ -645,12 +645,12 @@ d3.csv("data/colleges.csv", function(data) {
                   })
                   .attr("y", function(d, i) {
                     var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
-                    return yScaleBar(normalizedNum);
+                    return yScaleBar(normalizedNum) - 8;
                   })
                   .attr("width", xScaleBar.bandwidth())
                   .attr("height", function(d, i){
                     var normalizedNum =
-                    normalize(d, 0, 1, usedColumnHeaders[i]) - 0.07;
+                    normalize(d, 0, 1, usedColumnHeaders[i]) - 0.05;
                     var heightNum = 500 - yScaleBar(normalizedNum);
                     if (heightNum < 0) {
                         return 0;
