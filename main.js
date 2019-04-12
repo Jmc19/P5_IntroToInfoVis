@@ -722,10 +722,10 @@ d3.csv("data/colleges.csv", function(data) {
     // console.log(Object.keys(d3.select(data[387])));
     //console.table(data);
 
-    //TODO: Add Title to static chart
-    //Green and Red color for bars(?)
-    //At least make the dynamic
-    //Get a key
+    //TODO: Add Title to static chart (Checked)
+    //Green and Red color for bars(?) (Checked)
+    //At least make the dynamic chart colored (Checked)
+    //Get a key (Checked)
     //Clarify the public and private university in Chart 5
     //Need a checker; if selectedID != 10000 then do stuff
     var barsChart4 = chart4.append("g");
@@ -758,7 +758,7 @@ d3.csv("data/colleges.csv", function(data) {
                   })
                   .transition()
                   .duration(function(d) {
-                    return Math.random() * 2000;
+                    return Math.random() * 2200;
                   })
                   .delay(function(d) {
                     return Math.random() * 200;
@@ -766,6 +766,13 @@ d3.csv("data/colleges.csv", function(data) {
                   .attr("y", function(d, i) {
                     var normalizedNum = normalize(d, 0, 1, usedColumnHeaders[i])
                     return yScaleBar(normalizedNum) - 8;
+                  })
+                  .style("fill", function(d, i) {
+                    if (selectedDataArray[i] > averageArray[i]) {
+                        return "green";
+                    } else {
+                        return "red";
+                    }
                   })
                   .attr("width", xScaleBar.bandwidth())
                   .attr("height", function(d, i){
@@ -778,9 +785,26 @@ d3.csv("data/colleges.csv", function(data) {
                         return heightNum;
                     }
                   });
+
+        barsChart3.selectAll(".bar")
+                  .transition()
+                  .duration(function(d) {
+                    return Math.random() * 2000;
+                  })
+                  .delay(function(d) {
+                    return Math.random() * 500;
+                  })
+                  .style("fill", function(d, i) {
+                     if (averageArray[i] > selectedDataArray[i]) {
+                         return "green";
+                     } else {
+                         return "red";
+                     }
+                  });
     }
 
     function setDetails(d) {
+        d3.select("#uniType").text(d.pubPrivate);
         d3.select("#uniName").text(d.Name);
         d3.select("#admission").text(d.admission.toFixed(3));
         d3.select("#undergrads").text(d.undergrads.toFixed(3));
