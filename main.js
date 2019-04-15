@@ -793,14 +793,14 @@ d3.csv("data/colleges.csv", function(data) {
                   })
                   .delay(function(d) {
                     return Math.random() * 500;
-                  })
-                  .style("fill", function(d, i) {
-                     if (averageArray[i] > selectedDataArray[i]) {
-                         return "green";
-                     } else {
-                         return "red";
-                     }
                   });
+                  // .style("fill", function(d, i) {
+                  //    if (averageArray[i] > selectedDataArray[i]) {
+                  //        return "green";
+                  //    } else {
+                  //        return "red";
+                  //    }
+                  // });
     }
 
     function setDetails(d) {
